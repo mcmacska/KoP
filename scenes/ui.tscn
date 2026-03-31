@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://bc3d6w0jbe7wm"]
+
+[ext_resource type="Script" uid="uid://30pv3kipggeb" path="res://scripts/ui.gd" id="1_nt7q6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nt7q6"]
+bg_color = Color(0.7047895, 0, 0.25790915, 1)
+
+[node name="Ui" type="Control" unique_id=1645371746]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nt7q6")
+
+[node name="Health" type="Label" parent="." unique_id=1534262214]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 115.0
+offset_right = 156.0
+offset_bottom = 205.0
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=838491523]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 633.0
+offset_right = 205.0
+offset_bottom = 643.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_nt7q6")
+show_percentage = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=536376702]
+layout_mode = 0
+offset_left = 998.0
+offset_top = 608.0
+offset_right = 1152.0
+offset_bottom = 648.0
+alignment = 1
+
+[node name="Ammo" type="Label" parent="HBoxContainer" unique_id=1301775028]
+layout_mode = 2
+text = "10"
+
+[node name="FullAmmo" type="Label" parent="HBoxContainer" unique_id=1331845266]
+layout_mode = 2
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
