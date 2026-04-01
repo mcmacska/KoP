@@ -38,7 +38,7 @@ offset_right = 1152.0
 offset_bottom = 648.0
 alignment = 1
 
-[node name="Ammo" type="Label" parent="HBoxContainer" unique_id=1301775028]
+[node name="CurrentAmmo" type="Label" parent="HBoxContainer" unique_id=1301775028]
 layout_mode = 2
 text = "10"
 
