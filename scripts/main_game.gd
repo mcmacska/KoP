@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var player = $Player
-@onready var ui = $Ui
+@onready var ui = $CanvasLayer/Ui
 
 func _ready():
 	player.health.health_changed.connect(ui._on_health_changed)
@@ -19,4 +19,5 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if Input.is_action_just_pressed("exit"):
+		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var speed = 800  # pixels per second
+@export var damage: int = 20
 var velocity = Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
@@ -17,5 +17,5 @@ func _process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	print("Detected:", body.name)
 	if body.has_node("Health"):
-		body.get_node("Health").take_damage(10)
+		body.get_node("Health").take_damage(damage)
 	queue_free()

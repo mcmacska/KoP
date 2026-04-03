@@ -6,9 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://c8hc4y4nw5rsk" path="res://scenes/weapon.tscn" id="4_dyp2m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u8vuu"]
-radius = 13.0
+radius = 26.076809
 
-[node name="Player" type="CharacterBody2D" unique_id=64473195]
+[node name="Player" type="CharacterBody2D" unique_id=64473195 groups=["friends"]]
 collision_mask = 3
 script = ExtResource("1_g2els")
 
@@ -17,10 +17,13 @@ shape = SubResource("CircleShape2D_u8vuu")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1014656660]
 texture_filter = 1
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_3vyb7")
 
 [node name="Health" type="Node" parent="." unique_id=627811805]
 script = ExtResource("3_qhqgy")
 
 [node name="Weapon" parent="." unique_id=823180873 instance=ExtResource("4_dyp2m")]
+
+[node name="Camera" type="Camera2D" parent="." unique_id=1925125625]
+position_smoothing_enabled = true

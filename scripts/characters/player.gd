@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
-const SPEED = 300.0
+var is_running: bool = false
+const BASE_SPEED: float = 200.0
+@export var speed_changer: float = 1.0
 #const JUMP_VELOCITY = -400.0
 
 @onready var health = $Health
@@ -24,6 +26,10 @@ func _process(delta):
 		weapon.shoot()
 	if Input.is_action_just_pressed("reload"):
 		weapon.reload()
+	if Input.is_action_just_pressed("run"):
+		speed_changer = 2
+	if Input.is_action_just_released("run"):
+		speed_changer = 1
 		
 
 
@@ -43,9 +49,14 @@ func manage_movement():
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_vector("left", "right", "up", "down")
-	velocity = direction * SPEED
+		
+	velocity = direction * BASE_SPEED * speed_changer
+
+
+func apply_speed_changer(multiplier: float):
+	speed_changer = multiplier
 	
-	
+
 func equip_weapon(weapon_scene: PackedScene):
 	if current_weapon:
 		current_weapon.queue_free()

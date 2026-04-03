@@ -5,10 +5,10 @@
 [ext_resource type="Script" uid="uid://duxj8fb6a54by" path="res://scripts/Health.gd" id="3_ktxwe"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u8vuu"]
-radius = 52.0
+radius = 77.00649
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2x682"]
-radius = 119.0
+radius = 147.0034
 
 [node name="Tower" type="CharacterBody2D" unique_id=64473195]
 collision_layer = 2
@@ -19,7 +19,7 @@ shape = SubResource("CircleShape2D_u8vuu")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1014656660]
 texture_filter = 1
-scale = Vector2(0.4, 0.4)
+scale = Vector2(0.6, 0.6)
 texture = ExtResource("2_ay4al")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1490340783]
@@ -32,9 +32,9 @@ script = ExtResource("3_ktxwe")
 
 [node name="HealthLabel" type="Label" parent="." unique_id=1525468742]
 offset_left = -20.0
-offset_top = -79.0
+offset_top = -120.0
 offset_right = 20.0
-offset_bottom = -56.0
+offset_bottom = -97.0
 text = "100"
 horizontal_alignment = 1
 vertical_alignment = 1

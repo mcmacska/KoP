@@ -1,18 +1,23 @@
 extends Node2D
 
-@export var fire_rate = 0.8
-@export var damage = 10
+# projectile stats
+@export var projectile_damage: int = 20
+@export var projectile_speed: int = 4000  # pixels per seconds
 
-@export var reload_speed = 2
+@export var fire_rate: float = 0.8
+@export var reload_speed: int = 2
 
-@export var current_ammo = 10
-@export var clip_max_ammo = 10
-@export var full_ammo = 100
+@export var current_ammo: int = 10
+@export var clip_max_ammo: int = 10
+@export var full_ammo: int = 100
+
+@onready var muzzle_flash = $MuzzleFlash
+const muzzle_flash_time: float = 0.1
 
 signal ammo_changed(current_ammo, full_ammo)
 
-var can_shoot = true
-var is_reloading = false
+var can_shoot: bool = true
+var is_reloading: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -33,10 +38,14 @@ func shoot():
 	
 	# spawn it at muzzle position
 	projectile.position = $Muzzle.global_position
+	projectile.damage = projectile_damage
 	
 	# make it go in the direction the weapon is facing
 	var direction = Vector2.RIGHT.rotated(global_rotation)
-	projectile.velocity = direction * projectile.speed
+	projectile.velocity = direction * projectile_speed
+	
+	# add effects
+	await shooting_effects()
 	
 	# add to the scene tree
 	get_tree().current_scene.add_child(projectile)
@@ -62,3 +71,8 @@ func reload():
 	ammo_changed.emit(current_ammo, full_ammo)
 	can_shoot = true
 	is_reloading = false
+
+func shooting_effects():
+	muzzle_flash.visible = true
+	await get_tree().create_timer(muzzle_flash_time).timeout
+	muzzle_flash.visible = false
