@@ -1,16 +1,16 @@
-[gd_scene format=3 uid="uid://d3h6663cb8e3f"]
+[gd_scene format=3 uid="uid://bv5emepelc45q"]
 
-[ext_resource type="Script" uid="uid://dpry8gwgh21g2" path="res://scripts/characters/enemy_1.gd" id="1_2ol6t"]
-[ext_resource type="Texture2D" uid="uid://4vhggi63bojp" path="res://assets/characters/enemy.png" id="2_4y65w"]
-[ext_resource type="Script" uid="uid://duxj8fb6a54by" path="res://scripts/Health.gd" id="3_0o106"]
-[ext_resource type="PackedScene" uid="uid://c8hc4y4nw5rsk" path="res://scenes/weapons/weapon.tscn" id="4_4y65w"]
+[ext_resource type="Script" uid="uid://bh3mdhmqctxa0" path="res://scripts/characters/ally_1.gd" id="1_4eaw0"]
+[ext_resource type="Texture2D" uid="uid://bxqrn08p8djjc" path="res://assets/characters/ally.png" id="1_g1m8g"]
+[ext_resource type="Script" uid="uid://duxj8fb6a54by" path="res://scripts/Health.gd" id="3_0b1lf"]
+[ext_resource type="PackedScene" uid="uid://c8hc4y4nw5rsk" path="res://scenes/weapons/weapon.tscn" id="4_ijcn5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u8vuu"]
 radius = 26.172504
 
-[node name="Character" type="CharacterBody2D" unique_id=64473195 groups=["enemies"]]
-collision_layer = 2
-script = ExtResource("1_2ol6t")
+[node name="Character" type="CharacterBody2D" unique_id=64473195 groups=["friends"]]
+collision_mask = 2
+script = ExtResource("1_4eaw0")
 
 [node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1909948124]
 shape = SubResource("CircleShape2D_u8vuu")
@@ -18,17 +18,19 @@ shape = SubResource("CircleShape2D_u8vuu")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1014656660]
 texture_filter = 1
 scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_4y65w")
+texture = ExtResource("1_g1m8g")
 
 [node name="Area2D" type="Area2D" parent="Sprite2D" unique_id=443866151]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="Sprite2D/Area2D" unique_id=323941788]
 polygon = PackedVector2Array(24.999998, 1884.9999, 1459.9999, 2469.9998, 2579.9998, -29.999996, 1459.9999, -2069.9998, 9.999999, -1479.9999)
 
 [node name="Health" type="Node" parent="." unique_id=627811805]
-script = ExtResource("3_0o106")
+script = ExtResource("3_0b1lf")
 
-[node name="Weapon" parent="." unique_id=823180873 instance=ExtResource("4_4y65w")]
+[node name="Weapon" parent="." unique_id=823180873 instance=ExtResource("4_ijcn5")]
 
 [connection signal="body_entered" from="Sprite2D/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Sprite2D/Area2D" to="." method="_on_area_2d_body_exited"]

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c261mcgmnmjwn" path="res://scripts/main_menu.gd" id="1_l6cm7"]
 
-[node name="MainMenu" type="Node2D" unique_id=1469872316]
+[node name="MainMenu" type="CanvasLayer" unique_id=22342374]
 script = ExtResource("1_l6cm7")
 
 [node name="Start" type="Button" parent="." unique_id=2131312460]

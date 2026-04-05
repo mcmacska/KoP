@@ -13,6 +13,6 @@ func _on_health_changed(current, max):
 	print(current, max)
 
 func update_ammo(current, max):
-	print(current, max)
+	print("ui update ammo: ", current, max)
 	current_ammo.text = str(current)
 	full_ammo.text = str(max)

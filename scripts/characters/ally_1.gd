@@ -13,8 +13,8 @@ var dead_sprite = preload("res://assets/characters/dead_character.png")
 var is_dead = false
 
 func _on_died():
-	sprite.texture = dead_sprite
 	is_dead = true
+	sprite.texture = dead_sprite
 	set_process(false)
 	set_physics_process(false)
 	
@@ -56,13 +56,15 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	print("Enemy detected:", body.name)
-	if body.is_in_group("friends"):
+	print("Ally detected:", body.name)
+	print("body.get_groups():", body.get_groups())
+	
+	if body.is_in_group("enemies"):
 		targets.append(body)
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	if body.is_in_group("friends"):
+	if body.is_in_group("enemies"):
 		targets.erase(body)
 		
 		

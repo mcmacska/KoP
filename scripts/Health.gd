@@ -17,3 +17,9 @@ func take_damage(amount):
 
 	if health <= 0:
 		emit_signal("died")
+
+func heal(amount):
+	health += amount
+	if health > max_health:
+		health = max_health
+	emit_signal("health_changed", health, max_health)

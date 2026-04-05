@@ -5,25 +5,19 @@
 [ext_resource type="PackedScene" uid="uid://bngseqmt63fke" path="res://scenes/characters/player.tscn" id="3_70vka"]
 [ext_resource type="PackedScene" uid="uid://bc3d6w0jbe7wm" path="res://scenes/ui.tscn" id="5_nqdth"]
 [ext_resource type="PackedScene" uid="uid://d3h6663cb8e3f" path="res://scenes/characters/enemy_1.tscn" id="6_5cypo"]
+[ext_resource type="PackedScene" uid="uid://cmlywluvl53jp" path="res://scenes/death_screen.tscn" id="7_2l77h"]
+[ext_resource type="PackedScene" uid="uid://baxgt4igkjr72" path="res://scenes/pause_menu.tscn" id="7_70vka"]
+[ext_resource type="PackedScene" uid="uid://dkayvq5gc8agt" path="res://scenes/tools/medkit.tscn" id="7_nqdth"]
 [ext_resource type="PackedScene" uid="uid://bjh47ybv82sbb" path="res://scenes/structures/barbed_wire.tscn" id="7_wi4c7"]
+[ext_resource type="PackedScene" uid="uid://bv5emepelc45q" path="res://scenes/characters/ally_1.tscn" id="10_nqdth"]
 
 [node name="Main" type="Node2D" unique_id=1508842098]
+process_mode = 3
 script = ExtResource("1_ygxny")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=1747792065]
 scale = Vector2(4, 4)
 texture = ExtResource("2_wi4c7")
-
-[node name="Player" parent="." unique_id=64473195 instance=ExtResource("3_70vka")]
-position = Vector2(121, 98)
-
-[node name="Character" parent="." unique_id=1154462088 instance=ExtResource("6_5cypo")]
-position = Vector2(202, -66)
-rotation = -1.0916381
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1215520732]
-
-[node name="Ui" parent="CanvasLayer" unique_id=1645371746 instance=ExtResource("5_nqdth")]
 
 [node name="BarbedWire" parent="." unique_id=121436032 instance=ExtResource("7_wi4c7")]
 position = Vector2(13, -325)
@@ -36,3 +30,25 @@ position = Vector2(511, -325)
 
 [node name="BarbedWire4" parent="." unique_id=773877335 instance=ExtResource("7_wi4c7")]
 position = Vector2(345, -325)
+
+[node name="Medkit" parent="." unique_id=535502156 instance=ExtResource("7_nqdth")]
+position = Vector2(390, 283)
+
+[node name="Enemy_1" parent="." unique_id=1154462088 instance=ExtResource("6_5cypo")]
+position = Vector2(202, -66)
+rotation = -3.1419668
+
+[node name="Character" parent="." unique_id=64473195 instance=ExtResource("10_nqdth")]
+
+[node name="Player" parent="." unique_id=1097746195 instance=ExtResource("3_70vka")]
+position = Vector2(121, 98)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1215520732]
+
+[node name="Ui" parent="CanvasLayer" unique_id=1645371746 instance=ExtResource("5_nqdth")]
+
+[node name="DeathScreen" parent="." unique_id=1159156638 instance=ExtResource("7_2l77h")]
+visible = false
+
+[node name="PauseMenu" parent="." unique_id=106659632 instance=ExtResource("7_70vka")]
+visible = false
