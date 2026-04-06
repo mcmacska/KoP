@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://yak5xtimvwh8"]
+
+[ext_resource type="Script" uid="uid://dpg2e6oluc8um" path="res://scripts/base.gd" id="1_1m61d"]
+[ext_resource type="Texture2D" uid="uid://csh2hj4sgr1k1" path="res://assets/structures/wooden_tower.png" id="2_01eul"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i3cj4"]
+radius = 257.00195
+
+[node name="Base" type="Node2D" unique_id=124712863]
+script = ExtResource("1_1m61d")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=724201682]
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1786180912]
+shape = SubResource("CircleShape2D_i3cj4")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=170028552]
+scale = Vector2(2, 2)
+texture = ExtResource("2_01eul")
+
+[node name="CaptureLabel" type="Label" parent="." unique_id=1910474836]
+offset_left = -20.0
+offset_top = -300.0
+offset_right = 20.0
+offset_bottom = -277.0
+text = "100"
+horizontal_alignment = 1
+
+[node name="BaseOwner" type="Label" parent="." unique_id=840565015]
+offset_left = -33.0
+offset_top = -330.0
+offset_right = 33.0
+offset_bottom = -307.0
+horizontal_alignment = 1
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

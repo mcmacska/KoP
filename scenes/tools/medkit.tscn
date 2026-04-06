@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dkayvq5gc8agt"]
 
 [ext_resource type="Texture2D" uid="uid://dbp72yowdhaj6" path="res://assets/tools/medkit.png" id="1_6o1e4"]
-[ext_resource type="Script" uid="uid://dvpduwqmhvd08" path="res://scripts/medkit.gd" id="1_qun04"]
+[ext_resource type="Script" uid="uid://dvpduwqmhvd08" path="res://scripts/tools/medkit.gd" id="1_qun04"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qun04"]
 size = Vector2(32, 48)
