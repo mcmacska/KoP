@@ -23,6 +23,7 @@ window/main_scene="uid://dt0riegffo8fp"
 
 friends=""
 enemies=""
+capture_points=""
 
 [input]
 

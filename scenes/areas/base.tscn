@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_i3cj4"]
 radius = 257.00195
 
-[node name="Base" type="Node2D" unique_id=124712863]
+[node name="Base" type="Node2D" unique_id=124712863 groups=["capture_points"]]
 script = ExtResource("1_1m61d")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=724201682]

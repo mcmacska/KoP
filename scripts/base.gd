@@ -5,6 +5,7 @@ extends Node2D
 
 var capture_progress: float = 0.0
 var base_owner: String = "neutral"
+signal ownership_changed
 
 var own_counter: int = 0
 var enemy_counter: int = 0
@@ -56,12 +57,15 @@ func update_owner():
 	if capture_progress >= max_capture_points:
 		base_owner = ally_group
 		base_owner_label.text = ally_group
+		ownership_changed.emit()
 	elif capture_progress <= -max_capture_points:
 		base_owner = enemy_group
 		base_owner_label.text = enemy_group
+		ownership_changed.emit()
 	elif abs(capture_progress) < max_capture_points:
 		base_owner = neutral_group
 		base_owner_label.text = neutral_group
+		ownership_changed.emit()
 
 
 func change_team(ally_team_name: String, enemy_team_name: String):

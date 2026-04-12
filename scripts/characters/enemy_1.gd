@@ -46,13 +46,13 @@ func _process(delta):
 		
 func _physics_process(delta: float) -> void:
 	pass
-	#var direction := Input.get_axis("ui_left", "ui_right")
-	#if direction:
-		#velocity.x = direction * SPEED
-	#else:
-		#velocity.x = move_toward(velocity.x, 0, SPEED)
+	var direction := Input.get_axis("ui_left", "ui_right")
+	if direction:
+		velocity.x = direction * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
 #
-	#move_and_slide()
+	move_and_slide()
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:

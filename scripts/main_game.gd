@@ -6,6 +6,8 @@ extends Node2D
 @onready var death_screen = $DeathScreen
 @onready var weapon_holder = $Player/WeaponHolder
 
+var capture_points: Array = []
+
 func _ready():
 	player.health.health_changed.connect(ui._on_health_changed)
 	#player.weapon_changed.connect(weapon_changed)
@@ -18,7 +20,11 @@ func _ready():
 	ui.get_node("HealthBar").max_value = player.get_node("Health").max_health
 	ui.get_node("HealthBar").value = player.get_node("Health").max_health
 	player.died.connect(player_died)
-		
+	
+	# set capture points
+	capture_points = get_tree().get_nodes_in_group("capture_points")
+	for point in capture_points:
+		point.ownership_changed.connect(check_win_condition)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta: float) -> void:
@@ -40,7 +46,25 @@ func player_died():
 	death_screen.visible = true
 
 
-#func weapon_changed():
-	#if player.current_weapon:
-		#player.current_weapon.ammo_changed.connect(ui.update_ammo)
-		#ui.update_ammo(player.current_weapon.current_ammo, player.current_weapon.full_ammo)
+func check_win_condition():
+	if capture_points.is_empty():
+		return
+
+	var first_owner = capture_points[0].base_owner
+
+	if first_owner == "neutral":
+		return
+
+	for point in capture_points:
+		if point.base_owner != first_owner:
+			return  # Not all owned by same team
+
+	# If we reach here → all points owned by same team
+	end_game(first_owner)
+
+
+func end_game(winning_team):
+	if winning_team == "friends":
+		get_tree().change_scene_to_file("res://scenes/victory_screen.tscn")
+	if winning_team == "enemies":
+		get_tree().change_scene_to_file("res://scenes/defeat_screen.tscn")
