@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var is_running: bool = false
-const BASE_SPEED: float = 200.0
+const BASE_SPEED: float = 160.0
 @export var speed_changer: float = 1.0
 var internal_speed_changer: float = 1.0
 #const JUMP_VELOCITY = -400.0
@@ -10,6 +10,7 @@ var internal_speed_changer: float = 1.0
 @onready var hitbox = $Hitbox
 
 var is_dead = false
+signal died()
 
 # weapon management
 var inventory: Array = []
@@ -18,7 +19,6 @@ var current_weapon: Node = null
 @onready var weapon_holder = $WeaponHolder
 signal ammo_changed(current, max)
 
-signal died()
 
 func _on_died():
 	is_dead = true

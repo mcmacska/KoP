@@ -1,7 +1,12 @@
 extends CharacterBody2D
 
+@export var attack_range := 500
 
-const SPEED = 300.0
+var direction := Vector2.LEFT
+var distance_moved = 0
+const max_distance = 100
+
+const speed = 160.0
 var targets: Array = []
 #var current_target: Node2D = null
 
@@ -10,11 +15,22 @@ var targets: Array = []
 @onready var sprite = $Sprite2D
 var dead_sprite = preload("res://assets/characters/dead_character.png")
 
+enum State {
+	PATROL,
+	CHASE,
+	ATTACK
+}
+
+var current_state = State.PATROL
+
 var is_dead = false
+signal died()
+
 
 func _on_died():
 	sprite.texture = dead_sprite
 	is_dead = true
+	died.emit()
 	set_process(false)
 	set_physics_process(false)
 	
@@ -30,29 +46,25 @@ func _ready():
 func _process(delta):
 	if get_tree().paused:
 		return
-	var current_target: Node2D = get_closest_target()
-	if current_target:
-		# remove current target from targets when dead
-		if current_target.is_dead:
-			targets.erase(current_target)
-		var direction = current_target.global_position - global_position
-		var target_angle = direction.angle()
-		rotation = lerp_angle(rotation, target_angle, 5 * delta)
-		if is_aiming_at_target(current_target):
-			#print("Locked on!")
-			weapon_shooting()
-			
 		
 		
 func _physics_process(delta: float) -> void:
-	pass
-	var direction := Input.get_axis("ui_left", "ui_right")
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-#
-	move_and_slide()
+	update_state()
+
+	match current_state:
+		State.PATROL:
+			patrol(delta)
+		State.CHASE:
+			chase(delta)
+		State.ATTACK:
+			attack(delta)
+	#var direction := Input.get_axis("ui_left", "ui_right")
+	#if direction:
+		#velocity.x = direction * SPEED
+	#else:
+		#velocity.x = move_toward(velocity.x, 0, SPEED)
+		#
+	#move_and_slide()
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
@@ -101,3 +113,57 @@ func weapon_shooting():
 
 func _draw():
 	draw_line(Vector2.ZERO, Vector2.RIGHT.rotated(rotation) * 50, Color.RED)
+	
+
+# MOVEMENT
+func patrol(delta):
+	velocity = direction * speed
+	move_and_slide()
+	distance_moved += 1
+
+	if is_on_wall() || distance_moved > max_distance:
+		# reset distance moved
+		distance_moved = 0
+		# turn
+		direction *= -1
+
+
+func chase(delta):
+	var target = get_closest_target()
+	if not target:
+		return
+
+	var dir = (target.global_position - global_position).normalized()
+	velocity = dir * speed
+	move_and_slide()
+
+
+func update_state():
+	var target = get_closest_target()
+	# if it can see the target, attack it
+	if target:
+		if global_position.distance_to(target.global_position) < attack_range:
+			current_state = State.ATTACK
+		else:
+			current_state = State.CHASE
+	else:
+		# go back to patrolling
+		current_state = State.PATROL
+
+
+func attack(delta):
+	var current_target: Node2D = get_closest_target()
+	if not current_target:
+		return
+
+	if current_target.is_dead:
+		targets.erase(current_target)
+		return
+
+	var direction = current_target.global_position - global_position
+	var target_angle = direction.angle()
+
+	rotation = lerp_angle(rotation, target_angle, 5 * delta)
+
+	if is_aiming_at_target(current_target):
+		weapon_shooting()

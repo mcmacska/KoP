@@ -23,7 +23,7 @@ texture = ExtResource("2_4y65w")
 [node name="Area2D" type="Area2D" parent="Sprite2D" unique_id=443866151]
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="Sprite2D/Area2D" unique_id=323941788]
-polygon = PackedVector2Array(24.999998, 1884.9999, 1459.9999, 2469.9998, 2579.9998, -29.999996, 1459.9999, -2069.9998, 9.999999, -1479.9999)
+polygon = PackedVector2Array(24.999998, 1884.9999, 1979.9998, 2649.9998, 3209.9998, -4.9999995, 1909.9999, -2244.9998, 9.999999, -1479.9999)
 
 [node name="Health" type="Node" parent="." unique_id=627811805]
 script = ExtResource("3_0o106")

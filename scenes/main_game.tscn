@@ -38,11 +38,16 @@ position = Vector2(345, -325)
 [node name="Medkit" parent="." unique_id=535502156 instance=ExtResource("7_nqdth")]
 position = Vector2(390, 283)
 
+[node name="Enemy_2" parent="." unique_id=64473195 instance=ExtResource("6_5cypo")]
+position = Vector2(784.99994, -453.99997)
+rotation = -0.00074833236
+
 [node name="Enemy_1" parent="." unique_id=1154462088 instance=ExtResource("6_5cypo")]
-position = Vector2(202, -66)
+position = Vector2(1215.9999, -399)
 rotation = -3.1419668
 
-[node name="Character" parent="." unique_id=64473195 instance=ExtResource("10_nqdth")]
+[node name="Character" parent="." unique_id=825473280 instance=ExtResource("10_nqdth")]
+position = Vector2(-688, -343)
 
 [node name="Player" parent="." unique_id=1097746195 instance=ExtResource("3_70vka")]
 position = Vector2(121, 98)
