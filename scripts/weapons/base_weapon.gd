@@ -9,7 +9,7 @@ class_name BaseWeapon
 var projectile_scene = preload("res://scenes/weapons/projectile.tscn")
 
 @export var fire_rate: float = 0.8
-@export var reload_speed: int = 2
+@export var reload_speed: float = 2.0
 
 @export var current_ammo: int = 10
 @export var clip_max_ammo: int = 10

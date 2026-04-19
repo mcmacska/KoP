@@ -7,8 +7,6 @@ var capture_progress: float = 0.0
 var base_owner: String = "neutral"
 signal ownership_changed
 
-var bodies_inside := {}
-
 var own_counter: int = 0
 var enemy_counter: int = 0
 
@@ -81,25 +79,18 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group(enemy_group):
 		enemy_counter += 1
 		# Connect to died signal (if it exists)
-		bodies_inside[body] = true
 		if body.has_signal("died"):
 			body.died.connect(_on_body_died.bind(body))
 		return
 	elif body.is_in_group(ally_group):
 		own_counter += 1
-		# Connect to died signal (if it exists)
-		bodies_inside[body] = true
+		# Connect to died signal (if it exists)s
 		if body.has_signal("died"):
 			body.died.connect(_on_body_died.bind(body))
 		return
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	if not bodies_inside.has(body):
-		return
-
-	bodies_inside.erase(body)
-	
 	if body.is_in_group(enemy_group):
 		enemy_counter -= 1
 		return
@@ -109,12 +100,6 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 
 
 func _on_body_died(body: Node2D) -> void:
-	print("bodies_inside: ", bodies_inside)
-	if !bodies_inside.has(body):
-		return
-
-	bodies_inside.erase(body)
-
 	if body.is_in_group(enemy_group):
 		enemy_counter -= 1
 		return

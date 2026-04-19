@@ -7,7 +7,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_u8vuu"]
 radius = 26.076809
 
-[node name="Player" type="CharacterBody2D" unique_id=64473195 groups=["friends"]]
+[node name="Player" type="CharacterBody2D" unique_id=64473195]
 collision_mask = 3
 script = ExtResource("1_g2els")
 
@@ -22,7 +22,8 @@ texture = ExtResource("1_3vyb7")
 [node name="Health" type="Node" parent="." unique_id=627811805]
 script = ExtResource("3_qhqgy")
 
-[node name="Camera" type="Camera2D" parent="." unique_id=1925125625]
+[node name="Camera" type="Camera2D" parent="." unique_id=1925125625 groups=["friends"]]
+zoom = Vector2(0.2, 0.2)
 position_smoothing_enabled = true
 
 [node name="WeaponHolder" type="Node2D" parent="." unique_id=2088523788]

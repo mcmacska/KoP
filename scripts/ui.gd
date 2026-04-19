@@ -7,12 +7,12 @@ extends Control
 #func _ready() -> void:
 	#health_bar.add_theme_color_override("fg_color", Color(1, 0, 0))  # red
 
-func _on_health_changed(current, max):
-	health_bar.max_value = max
-	health_bar.value = current
-	print(current, max)
+func _on_health_changed(current_health, max_health):
+	health_bar.max_value = max_health
+	health_bar.value = current_health
+	print(current_health, max_health)
 
-func update_ammo(current, max):
-	print("ui update ammo: ", current, max)
+func update_ammo(current, max_ammo):
+	print("ui update ammo: ", current, max_ammo)
 	current_ammo.text = str(current)
-	full_ammo.text = str(max)
+	full_ammo.text = str(max_ammo)

@@ -18,10 +18,17 @@ var dead_sprite = preload("res://assets/characters/dead_character.png")
 enum State {
 	PATROL,
 	CHASE,
-	ATTACK
+	ATTACK,
+	CAPTURE
 }
 
 var current_state = State.PATROL
+
+@export var patrol_points: Array[Node] = []
+var current_point_index := 0
+
+var bases: Array[Node] = []
+var base_target: Node
 
 var is_dead = false
 signal died()
@@ -41,6 +48,9 @@ func _ready():
 	health.died.connect(_on_died)
 	# set weapon user
 	weapon.wielder = self
+	# set capture points
+	bases = get_tree().get_nodes_in_group("capture_points")
+	print("bases: ", bases)
 	
 	
 func _process(delta):
@@ -58,13 +68,8 @@ func _physics_process(delta: float) -> void:
 			chase(delta)
 		State.ATTACK:
 			attack(delta)
-	#var direction := Input.get_axis("ui_left", "ui_right")
-	#if direction:
-		#velocity.x = direction * SPEED
-	#else:
-		#velocity.x = move_toward(velocity.x, 0, SPEED)
-		#
-	#move_and_slide()
+		State.CAPTURE:
+			capture(delta)
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
@@ -77,7 +82,8 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.is_in_group("friends"):
 		targets.erase(body)
 		
-		
+
+# WEAPON HANDLING
 func get_closest_target():
 	var closest: Node2D = null
 	var closest_distance = INF
@@ -115,18 +121,62 @@ func _draw():
 	draw_line(Vector2.ZERO, Vector2.RIGHT.rotated(rotation) * 50, Color.RED)
 	
 
-# MOVEMENT
+# STATES
 func patrol(delta):
-	velocity = direction * speed
+	if patrol_points.is_empty():
+		return
+
+	var target = patrol_points[current_point_index]
+	var dir = (target.global_position - global_position)
+	var target_angle = dir.angle()
+	rotation = lerp_angle(rotation, target_angle, 5 * delta)
+
+	if dir.length() < 5:
+		current_point_index = (current_point_index + 1) % patrol_points.size()
+		return
+
+	velocity = dir.normalized() * speed
 	move_and_slide()
-	distance_moved += 1
+	
+	
+func get_closest_base() -> Node2D:
+	var closest = null
+	var min_dist = INF
 
-	if is_on_wall() || distance_moved > max_distance:
-		# reset distance moved
-		distance_moved = 0
-		# turn
-		direction *= -1
+	for b in bases:
+		if not is_instance_valid(b):
+			continue
 
+		# optional: skip already owned bases
+		if b.base_owner == "enemies":
+			continue
+
+		var dist = global_position.distance_to(b.global_position)
+		if dist < min_dist:
+			min_dist = dist
+			closest = b
+
+	return closest
+
+
+func capture(delta):
+	var base = get_closest_base()
+	if not base:
+		return
+
+	var dir = base.global_position - global_position
+
+	# rotate like before
+	var target_angle = dir.angle()
+	rotation = lerp_angle(rotation, target_angle, 5 * delta)
+
+	if global_position.distance_to(base.global_position) < 20:
+		print("Im in position")
+		velocity = Vector2.ZERO
+	else:
+		velocity = dir.normalized() * speed
+		move_and_slide()
+		
 
 func chase(delta):
 	var target = get_closest_target()
@@ -146,6 +196,8 @@ func update_state():
 			current_state = State.ATTACK
 		else:
 			current_state = State.CHASE
+	elif get_closest_base():
+		current_state = State.CAPTURE
 	else:
 		# go back to patrolling
 		current_state = State.PATROL

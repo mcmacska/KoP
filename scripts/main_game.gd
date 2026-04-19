@@ -4,7 +4,6 @@ extends Node2D
 @onready var ui = $CanvasLayer/Ui
 @onready var pause_menu = $PauseMenu
 @onready var death_screen = $DeathScreen
-@onready var weapon_holder = $Player/WeaponHolder
 
 var capture_points: Array = []
 

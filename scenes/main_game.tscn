@@ -38,13 +38,10 @@ position = Vector2(345, -325)
 [node name="Medkit" parent="." unique_id=535502156 instance=ExtResource("7_nqdth")]
 position = Vector2(390, 283)
 
-[node name="Enemy_2" parent="." unique_id=64473195 instance=ExtResource("6_5cypo")]
-position = Vector2(784.99994, -453.99997)
+[node name="Enemy_2" parent="." unique_id=64473195 node_paths=PackedStringArray("patrol_points") instance=ExtResource("6_5cypo")]
+position = Vector2(662, -510.99997)
 rotation = -0.00074833236
-
-[node name="Enemy_1" parent="." unique_id=1154462088 instance=ExtResource("6_5cypo")]
-position = Vector2(1215.9999, -399)
-rotation = -3.1419668
+patrol_points = [NodePath("../PatrolPoints/Marker2D_1"), NodePath("../PatrolPoints/Marker2D_2"), NodePath("../PatrolPoints/Marker2D_3")]
 
 [node name="Character" parent="." unique_id=825473280 instance=ExtResource("10_nqdth")]
 position = Vector2(-688, -343)
@@ -61,3 +58,20 @@ visible = false
 
 [node name="PauseMenu" parent="." unique_id=106659632 instance=ExtResource("7_70vka")]
 visible = false
+
+[node name="PatrolPoints" type="Node" parent="." unique_id=1421993215]
+
+[node name="Marker2D_1" type="Marker2D" parent="PatrolPoints" unique_id=1117561564]
+position = Vector2(705.00006, -1087)
+rotation = -0.0007483324
+scale = Vector2(1.0000001, 1.0000001)
+
+[node name="Marker2D_2" type="Marker2D" parent="PatrolPoints" unique_id=1856203376]
+position = Vector2(452.99994, -862)
+rotation = -0.0007483324
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="Marker2D_3" type="Marker2D" parent="PatrolPoints" unique_id=348533653]
+position = Vector2(368, -1235.0001)
+rotation = -0.0007483324
+scale = Vector2(0.99999994, 0.99999994)
