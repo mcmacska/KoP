@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bc3d6w0jbe7wm"]
 
 [ext_resource type="Script" uid="uid://30pv3kipggeb" path="res://scripts/ui.gd" id="1_nt7q6"]
+[ext_resource type="Texture2D" uid="uid://dh7x02el7y2c1" path="res://assets/ui/crosshair.png" id="2_x4jx1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nt7q6"]
 bg_color = Color(0.7047895, 0, 0.25790915, 1)
@@ -12,8 +13,25 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("1_nt7q6")
-metadata/_edit_use_anchors_ = true
+
+[node name="Crosshair" type="TextureRect" parent="." unique_id=100495556]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_x4jx1")
+expand_mode = 2
 
 [node name="HealthBar" type="ProgressBar" parent="." unique_id=838491523]
 layout_mode = 1

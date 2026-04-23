@@ -1,4 +1,4 @@
-extends Node2D
+extends Node3D
 
 class_name BaseWeapon
 
@@ -6,7 +6,8 @@ class_name BaseWeapon
 @export var projectile_damage: int = 22
 @export var projectile_speed: int = 5000  # pixels per seconds
 
-var projectile_scene = preload("res://scenes/weapons/projectile.tscn")
+#var projectile_scene = preload("res://scenes/weapons/projectile.tscn")
+var projectile_scene = preload("res://scenes/weapons/projectile3d.tscn")
 
 @export var fire_rate: float = 0.8
 @export var reload_speed: float = 2.0
@@ -49,7 +50,7 @@ func shoot():
 	# set who shoots it
 	projectile.shooter = wielder
 	# make it go in the direction the weapon is facing
-	var direction = Vector2.RIGHT.rotated(global_rotation)
+	var direction = -global_transform.basis.z
 	projectile.velocity = direction * projectile_speed
 	# add effects
 	await shooting_effects()

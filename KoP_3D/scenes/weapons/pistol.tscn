@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dmsx141c0bngt" path="res://assets/weapons/pistol.png" id="2_60a84"]
 [ext_resource type="Texture2D" uid="uid://bydokea8rkg1r" path="res://assets/weapons/muzzle_flash.png" id="3_t1ie7"]
 
-[node name="Weapon" type="Node2D" unique_id=823180873]
+[node name="Weapon" type="Node3D" unique_id=689063791]
 script = ExtResource("1_60a84")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=99978899]

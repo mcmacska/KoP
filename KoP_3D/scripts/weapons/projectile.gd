@@ -1,19 +1,18 @@
-extends RigidBody2D
+extends RigidBody3D
 
 @export var damage: int = 20
-var velocity = Vector2.ZERO
+var velocity = Vector3.ZERO
 
 # who shoots it
 var shooter
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	continuous_cd = RigidBody2D.CCD_MODE_CAST_RAY
-	gravity_scale = 0
-	linear_damp = 0
+	gravity_scale = 0.0
+	linear_damp = 0.0
 	
-	if velocity != Vector2.ZERO:
-		rotation = velocity.angle()  # rotate sprite to match movement direction
+	if velocity != Vector3.ZERO:
+		look_at(global_position + velocity, Vector3.UP)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -23,7 +22,7 @@ func _process(delta: float) -> void:
 		_on_body_entered(collision.get_collider())
 
 
-func _on_body_entered(body: Node2D) -> void:
+func _on_body_entered(body: Node3D) -> void:
 	print("Detected:", body.name)
 	if body == shooter:
 		queue_free()

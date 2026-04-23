@@ -37,8 +37,10 @@ func _ready():
 	health.died.connect(_on_died)
 	
 	# add starter weapons
+	print("segg")
 	add_weapon(preload("res://scenes/weapons/weapon.tscn"))
 	add_weapon(preload("res://scenes/weapons/pistol.tscn"))
+	print("amog")
 	equip_weapon(0)
 
 
@@ -111,8 +113,11 @@ func apply_speed_changer(multiplier: float):
 	
 
 func add_weapon(weapon_scene: PackedScene):
+	print("add_weapon")
 	var weapon = weapon_scene.instantiate()
+	print("add_weapon 2")
 	inventory.append(weapon)
+	print("add_weapon 3")
 	weapon.hide()  # don't show yet
 	weapon_holder.add_child(weapon)
 	# Connect weapon ammo change

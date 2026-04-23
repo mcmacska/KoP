@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends CharacterBody3D
 
 @export var attack_range := 500
 
@@ -12,7 +12,7 @@ var targets: Array = []
 
 @onready var health = $Health
 @onready var weapon = $Weapon
-@onready var sprite = $Sprite2D
+@onready var body_mesh = $Body
 var dead_sprite = preload("res://assets/characters/dead_character.png")
 
 enum State {
@@ -35,7 +35,7 @@ signal died()
 
 
 func _on_died():
-	sprite.texture = dead_sprite
+	body_mesh.texture = dead_sprite
 	is_dead = true
 	died.emit()
 	set_process(false)
@@ -72,20 +72,20 @@ func _physics_process(delta: float) -> void:
 			capture(delta)
 
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
+func _on_area_3d_body_entered(body: Node3D) -> void:
 	print("Enemy detected:", body.name)
 	if body.is_in_group("friends"):
 		targets.append(body)
 
 
-func _on_area_2d_body_exited(body: Node2D) -> void:
+func _on_area_3d_body_exited(body: Node3D) -> void:
 	if body.is_in_group("friends"):
 		targets.erase(body)
 		
 
 # WEAPON HANDLING
 func get_closest_target():
-	var closest: Node2D = null
+	var closest: Node3D = null
 	var closest_distance = INF
 
 	for t in targets:
@@ -100,10 +100,15 @@ func get_closest_target():
 	return closest
 
 
-func is_aiming_at_target(target: Node2D) -> bool:
-	var direction_to_target = (target.global_position - global_position).angle()
-	var angle_diff = abs(angle_difference(rotation, direction_to_target))
-	return angle_diff < deg_to_rad(10) # tolerance
+func is_aiming_at_target(target: Node3D) -> bool:
+	var dir = target.global_position - global_position
+	if dir.length_squared() < 0.000001:
+		return false
+	var to_target = dir.normalized()
+	var forward = -global_transform.basis.z
+	var dot = forward.dot(to_target)
+	# 10 degrees tolerance
+	return dot > cos(deg_to_rad(10.0))
 
 
 func weapon_shooting():
@@ -116,10 +121,13 @@ func weapon_shooting():
 	else:
 		weapon.shoot()
 
+func rotate_towards(dir: Vector3, delta: float) -> void:
+	var target_basis = Basis.looking_at(dir, Vector3.UP)
 
-func _draw():
-	draw_line(Vector2.ZERO, Vector2.RIGHT.rotated(rotation) * 50, Color.RED)
-	
+	global_transform.basis = global_transform.basis.slerp(
+		target_basis,
+		5.0 * delta
+	)
 
 # STATES
 func patrol(delta):
@@ -128,8 +136,9 @@ func patrol(delta):
 
 	var target = patrol_points[current_point_index]
 	var dir = (target.global_position - global_position)
-	var target_angle = dir.angle()
-	rotation = lerp_angle(rotation, target_angle, 5 * delta)
+	if dir.length_squared() < 0.000001:
+		return # prevent invalid basis
+	rotate_towards(dir, delta)
 
 	if dir.length() < 5:
 		current_point_index = (current_point_index + 1) % patrol_points.size()
@@ -139,7 +148,7 @@ func patrol(delta):
 	move_and_slide()
 	
 	
-func get_closest_base() -> Node2D:
+func get_closest_base() -> Node3D:
 	var closest = null
 	var min_dist = INF
 
@@ -165,14 +174,14 @@ func capture(delta):
 		return
 
 	var dir = base.global_position - global_position
-
+	if dir.length_squared() < 0.000001:
+		return # prevent invalid basis
 	# rotate like before
-	var target_angle = dir.angle()
-	rotation = lerp_angle(rotation, target_angle, 5 * delta)
+	rotate_towards(dir, delta)
 
 	if global_position.distance_to(base.global_position) < 20:
 		print("Im in position")
-		velocity = Vector2.ZERO
+		velocity = Vector3.ZERO
 	else:
 		velocity = dir.normalized() * speed
 		move_and_slide()
@@ -183,8 +192,10 @@ func chase(delta):
 	if not target:
 		return
 
-	var dir = (target.global_position - global_position).normalized()
-	velocity = dir * speed
+	var dir = (target.global_position - global_position)
+	if dir.length_squared() < 0.000001:
+		return # prevent invalid basis
+	velocity = dir.normalized() * speed
 	move_and_slide()
 
 
@@ -204,7 +215,7 @@ func update_state():
 
 
 func attack(delta):
-	var current_target: Node2D = get_closest_target()
+	var current_target: Node3D = get_closest_target()
 	if not current_target:
 		return
 
@@ -212,10 +223,8 @@ func attack(delta):
 		targets.erase(current_target)
 		return
 
-	var direction = current_target.global_position - global_position
-	var target_angle = direction.angle()
-
-	rotation = lerp_angle(rotation, target_angle, 5 * delta)
+	var dir = current_target.global_position - global_position
+	rotate_towards(dir, delta)
 
 	if is_aiming_at_target(current_target):
 		weapon_shooting()

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bvm5dgokdjtfu"]
+
+[ext_resource type="Script" uid="uid://bq373ixgy5dow" path="res://scripts/weapons/projectile.gd" id="1_glkv1"]
+[ext_resource type="PackedScene" uid="uid://ce56pf84bpho5" path="res://assets/weapons/bullet.glb" id="3_1mndr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1mndr"]
+size = Vector3(0.011642456, 0.00957489, 0.09992981)
+
+[node name="Projectile" type="RigidBody3D" unique_id=143100727]
+collision_layer = 0
+collision_mask = 7
+script = ExtResource("1_glkv1")
+
+[node name="CollisionShape2D" type="CollisionShape3D" parent="." unique_id=773982310]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00023651123, 0.00019454956, 0.000541687)
+shape = SubResource("BoxShape3D_1mndr")
+
+[node name="bullet" parent="." unique_id=1003194628 instance=ExtResource("3_1mndr")]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c22jaf6nmn3e5" path="res://scenes/structures/Ground.tscn" id="6_ygxny"]
 [ext_resource type="PackedScene" uid="uid://cmlywluvl53jp" path="res://scenes/death_screen.tscn" id="7_2l77h"]
 [ext_resource type="PackedScene" uid="uid://baxgt4igkjr72" path="res://scenes/pause_menu.tscn" id="7_70vka"]
+[ext_resource type="PackedScene" uid="uid://cpe87272vs1o" path="res://scenes/characters/enemy3d.tscn" id="7_wi4c7"]
 
 [node name="Main" type="Node3D" unique_id=617117156]
 process_mode = 3
@@ -14,7 +15,10 @@ script = ExtResource("1_ygxny")
 [node name="Ground" parent="." unique_id=1418688407 instance=ExtResource("6_ygxny")]
 
 [node name="Player" parent="." unique_id=1976144270 instance=ExtResource("5_ipu61")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.94109726, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.93506753, 0)
+
+[node name="Character" parent="." unique_id=950913377 instance=ExtResource("7_wi4c7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 19.610079)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1215520732]
 
