@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://ch5cwas5b3aif"]
+
+[ext_resource type="Script" uid="uid://bq373ixgy5dow" path="res://scripts/weapons/projectile.gd" id="1_q3m7n"]
+[ext_resource type="Texture2D" uid="uid://hi3s8h73tkwm" path="res://assets/weapons/bullet.png" id="2_softn"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2ropf"]
+radius = 1.0
+height = 6.0
+
+[node name="Projectile" type="RigidBody2D" unique_id=1252274374]
+collision_layer = 0
+collision_mask = 7
+script = ExtResource("1_q3m7n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2027601995]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_2ropf")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=269871696]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_softn")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://2pgvp6veov2b"]
+
+[ext_resource type="Texture2D" uid="uid://b23e8mkntwig2" path="res://assets/structures/wooden_plank.png" id="1_aqrvx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pp8rj"]
+size = Vector2(6, 32)
+
+[node name="WoodenPlank" type="StaticBody2D" unique_id=1561139140]
+collision_layer = 3
+
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=51718512]
+shape = SubResource("RectangleShape2D_pp8rj")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=514660493]
+texture_filter = 1
+texture = ExtResource("1_aqrvx")

@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://dpeilc8msymmu"]
+
+[ext_resource type="Script" uid="uid://cekyatpvrpgbp" path="res://scripts/characters/tower.gd" id="1_ay4al"]
+[ext_resource type="Texture2D" uid="uid://csh2hj4sgr1k1" path="res://assets/structures/wooden_tower.png" id="2_ay4al"]
+[ext_resource type="Script" uid="uid://duxj8fb6a54by" path="res://scripts/Health.gd" id="3_ktxwe"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u8vuu"]
+radius = 77.00649
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2x682"]
+radius = 147.0034
+
+[node name="Tower" type="CharacterBody2D" unique_id=64473195]
+collision_layer = 2
+script = ExtResource("1_ay4al")
+
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1909948124]
+shape = SubResource("CircleShape2D_u8vuu")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1014656660]
+texture_filter = 1
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_ay4al")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1490340783]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1423463889]
+shape = SubResource("CircleShape2D_2x682")
+
+[node name="Health" type="Node" parent="." unique_id=489364700]
+script = ExtResource("3_ktxwe")
+
+[node name="HealthLabel" type="Label" parent="." unique_id=1525468742]
+offset_left = -20.0
+offset_top = -120.0
+offset_right = 20.0
+offset_bottom = -97.0
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

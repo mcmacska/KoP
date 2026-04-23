@@ -84,8 +84,8 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		return
 	elif body.is_in_group(ally_group):
 		own_counter += 1
-		# Connect to died signal (if it exists)s
-		if body.has_signal("died"):
+		# Connect to died signal (if it exists) and hasn't been connected
+		if body.has_signal("died") && !body.died.is_connected(_on_body_died):
 			body.died.connect(_on_body_died.bind(body))
 		return
 

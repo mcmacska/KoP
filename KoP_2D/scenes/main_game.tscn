@@ -20,8 +20,11 @@ script = ExtResource("1_ygxny")
 scale = Vector2(4, 4)
 texture = ExtResource("2_wi4c7")
 
-[node name="EnemyBase" parent="." unique_id=124712863 instance=ExtResource("11_5cypo")]
+[node name="Base1" parent="." unique_id=124712863 instance=ExtResource("11_5cypo")]
 position = Vector2(426, 1055)
+
+[node name="Base2" parent="." unique_id=1541091949 instance=ExtResource("11_5cypo")]
+position = Vector2(-452, -1067)
 
 [node name="BarbedWire" parent="." unique_id=121436032 instance=ExtResource("7_wi4c7")]
 position = Vector2(13, -325)

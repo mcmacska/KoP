@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://dt0riegffo8fp"]
+
+[ext_resource type="Script" uid="uid://di1h8656itdcf" path="res://scripts/main_game.gd" id="1_ygxny"]
+[ext_resource type="PackedScene" uid="uid://dmh0xdhi3qwgo" path="res://scenes/characters/player3d.tscn" id="5_ipu61"]
+[ext_resource type="PackedScene" uid="uid://bc3d6w0jbe7wm" path="res://scenes/ui.tscn" id="5_nqdth"]
+[ext_resource type="PackedScene" uid="uid://c22jaf6nmn3e5" path="res://scenes/structures/Ground.tscn" id="6_ygxny"]
+[ext_resource type="PackedScene" uid="uid://cmlywluvl53jp" path="res://scenes/death_screen.tscn" id="7_2l77h"]
+[ext_resource type="PackedScene" uid="uid://baxgt4igkjr72" path="res://scenes/pause_menu.tscn" id="7_70vka"]
+
+[node name="Main" type="Node3D" unique_id=617117156]
+process_mode = 3
+script = ExtResource("1_ygxny")
+
+[node name="Ground" parent="." unique_id=1418688407 instance=ExtResource("6_ygxny")]
+
+[node name="Player" parent="." unique_id=1976144270 instance=ExtResource("5_ipu61")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.94109726, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1215520732]
+
+[node name="Ui" parent="CanvasLayer" unique_id=1645371746 instance=ExtResource("5_nqdth")]
+
+[node name="DeathScreen" parent="." unique_id=1159156638 instance=ExtResource("7_2l77h")]
+visible = false
+
+[node name="PauseMenu" parent="." unique_id=106659632 instance=ExtResource("7_70vka")]
+visible = false
+
+[node name="PatrolPoints" type="Node" parent="." unique_id=1421993215]
+
+[node name="Marker_1" type="Marker3D" parent="PatrolPoints" unique_id=1166425492]
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 0, 100, 0, 0)
+
+[node name="Marker_2" type="Marker3D" parent="PatrolPoints" unique_id=1305028305]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 453, 0, 0)
+
+[node name="Marker_3" type="Marker3D" parent="PatrolPoints" unique_id=1355824736]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 368, 0, 100)
