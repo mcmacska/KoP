@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://pa8i5uf4xw34" path="res://scripts/characters/player.gd" id="1_vsclp"]
 [ext_resource type="Script" uid="uid://duxj8fb6a54by" path="res://scripts/Health.gd" id="3_ifusu"]
 [ext_resource type="PackedScene" uid="uid://538dx85456pp" path="res://assets/characters/player.glb" id="3_vsclp"]
+[ext_resource type="Script" uid="uid://bx2c1htcswki1" path="res://scenes/characters/camera.gd" id="4_bs8hp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vsclp"]
 radius = 0.27246094
@@ -28,4 +29,6 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.00
 [node name="CameraPivot" type="Node3D" parent="." unique_id=1972547943]
 
 [node name="Camera" type="Camera3D" parent="CameraPivot" unique_id=1745129787 groups=["friends"]]
-transform = Transform3D(1, 0, 0, 0, 0.9848078, 0.1736482, 0, -0.1736482, 0.9848078, 0, 1.9547638, 2.1672723)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5690636, -0.0018848777)
+cull_mask = 1048567
+script = ExtResource("4_bs8hp")

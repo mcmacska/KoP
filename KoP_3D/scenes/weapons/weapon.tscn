@@ -1,22 +1,16 @@
 [gd_scene format=3 uid="uid://c8hc4y4nw5rsk"]
 
 [ext_resource type="Script" uid="uid://x0po3mwnhjp3" path="res://scripts/weapons/weapon.gd" id="1_uxn4k"]
-[ext_resource type="Texture2D" uid="uid://ds8poeqw61rhw" path="res://assets/weapons/rifle_1.png" id="1_xasec"]
-[ext_resource type="Texture2D" uid="uid://bydokea8rkg1r" path="res://assets/weapons/muzzle_flash.png" id="3_bmw2d"]
+[ext_resource type="PackedScene" uid="uid://dk5ovh0gistlw" path="res://assets/weapons/m1_garand.glb" id="4_4uykt"]
 
 [node name="Weapon" type="Node3D" unique_id=70947009]
 script = ExtResource("1_uxn4k")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=99978899]
-position = Vector2(33.5, 3)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_xasec")
-
 [node name="Muzzle" type="Marker3D" parent="." unique_id=278718160]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 94.5, -4, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.064334035, -0.75936794)
 
-[node name="MuzzleFlash" type="Sprite2D" parent="." unique_id=918272839]
+[node name="MuzzleFlash" type="Sprite3D" parent="." unique_id=206556310]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0, 0, 0.064, -0.76)
 visible = false
-position = Vector2(103, -4)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("3_bmw2d")
+
+[node name="m1_garand" parent="." unique_id=830846358 instance=ExtResource("4_4uykt")]

@@ -20,7 +20,8 @@ shape = SubResource("CapsuleShape3D_n06jw")
 [node name="Health" type="Node" parent="." unique_id=627811805]
 script = ExtResource("3_uebro")
 
-[node name="Weapon" parent="." unique_id=823180873 instance=ExtResource("4_fbq1q")]
+[node name="Weapon" parent="." unique_id=70947009 instance=ExtResource("4_fbq1q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27998573, 0.23137525, 0)
 
 [node name="Body" parent="." unique_id=1278972138 instance=ExtResource("5_b3jn0")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
