@@ -1,5 +1,10 @@
 [gd_scene format=3 uid="uid://1eeivr1vor4q"]
 
+[ext_resource type="Texture2D" uid="uid://cho1q5spg3sca" path="res://assets/misc/bullet_hole.png" id="1_cucbd"]
+
 [node name="BulletHole" type="Node3D" unique_id=971721443]
 
 [node name="Decal" type="Decal" parent="." unique_id=1473691104]
+size = Vector3(0.1, 0.1, 0.1)
+texture_albedo = ExtResource("1_cucbd")
+cull_mask = 31

@@ -12,6 +12,7 @@ var targets: Array = []
 
 @onready var health = $Health
 @onready var weapon = $Weapon
+@onready var muzzle: Node3D = $Muzzle
 @onready var body_mesh = $Body
 var dead_scene = preload("res://scenes/characters/enemy_dead.tscn")
 
@@ -129,7 +130,8 @@ func weapon_shooting():
 		print("reloading")
 		weapon.reload()
 	else:
-		weapon.shoot()
+		pass
+		weapon.shoot(muzzle.global_transform)
 
 func rotate_towards(dir: Vector3, delta: float) -> void:
 	var target_basis = Basis.looking_at(dir, Vector3.UP)

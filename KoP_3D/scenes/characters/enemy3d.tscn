@@ -27,6 +27,9 @@ script = ExtResource("3_uebro")
 [node name="Weapon" parent="." unique_id=70947009 instance=ExtResource("4_fbq1q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27998573, 0.23137525, 0)
 
+[node name="Muzzle" type="Node3D" parent="." unique_id=2073667034]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
 [node name="Body" parent="." unique_id=1812369 instance=ExtResource("5_oji3h")]
 
 [node name="Area2D" type="Area3D" parent="." unique_id=1823080115 groups=["enemies"]]

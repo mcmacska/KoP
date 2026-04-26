@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 @export var sensitivity: float = 0.003
 @onready var camera_pivot = $CameraPivot
+@onready var camera = $CameraPivot/Camera
 var pitch: float = 0.0
 
 var is_running: bool = false
@@ -61,7 +62,7 @@ func _process(delta):
 	if get_tree().paused:
 		return
 	if Input.is_action_just_pressed("shoot"):
-		current_weapon.shoot()
+		current_weapon.shoot(camera.global_transform)
 	if Input.is_action_just_pressed("reload"):
 		current_weapon.reload()
 	if Input.is_action_just_pressed("run"):

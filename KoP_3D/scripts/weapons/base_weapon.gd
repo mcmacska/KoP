@@ -2,9 +2,10 @@ extends Node3D
 
 class_name BaseWeapon
 
-# projectile stats
-@export var projectile_damage: int = 22
-@export var projectile_speed: int = 5000  # pixels per seconds
+# bullet stats
+@export var damage: int = 22
+@export var bullet_hole_scene: PackedScene
+@export var accuracy: float = 0.02
 
 #var projectile_scene = preload("res://scenes/weapons/projectile.tscn")
 var projectile_scene = preload("res://scenes/weapons/projectile3d.tscn")
@@ -37,31 +38,64 @@ func _process(delta: float) -> void:
 	pass
 
 
-func shoot():
+func shoot(camera_transform: Transform3D):
 	if not can_shoot or is_reloading or current_ammo <= 0:
 		return
 	can_shoot = false
 	print("shooting...")
-	var projectile = projectile_scene.instantiate()
-	
-	# spawn it at muzzle position
-	projectile.position = $Muzzle.global_position
-	projectile.damage = projectile_damage
-	# set who shoots it
-	projectile.shooter = wielder
-	# make it go in the direction the weapon is facing
-	var direction = -global_transform.basis.z
-	projectile.velocity = direction * projectile_speed
+	# cast ray
+	create_ray(camera_transform, wielder)
 	# add effects
 	await shooting_effects()
 	# add to the scene tree
-	get_tree().current_scene.add_child(projectile)
+	#get_tree().current_scene.add_child(projectile)
 	# decrease current ammo
 	current_ammo = current_ammo - 1
 	ammo_changed.emit(current_ammo, full_ammo)
 	# cooldown
 	await get_tree().create_timer(fire_rate).timeout
 	can_shoot = true
+
+	
+func create_ray(camera_transform: Transform3D, shooter: CharacterBody3D):
+	var from = camera_transform.origin
+	var direction = -camera_transform.basis.z
+	# intentional innaccuracy
+	direction += Vector3(
+		randf_range(-accuracy, accuracy),
+		randf_range(-accuracy, accuracy),
+		randf_range(-accuracy, accuracy)
+	)
+	direction = direction.normalized()
+	var to = from + direction * 1000
+	
+	var space_state = get_world_3d().direct_space_state
+	var query = PhysicsRayQueryParameters3D.create(from, to)
+	query.exclude = [self]
+	
+	var result = space_state.intersect_ray(query)
+	if result:
+		spawn_bullet_hole(result)
+		apply_damage(result.collider, shooter)
+		
+		
+func apply_damage(body: Node3D, shooter: CharacterBody3D):
+	print("Detected:", body.name)
+	if body.is_in_group("friends") and shooter.is_in_group("friends"):
+		return
+	if body.is_in_group("enemies") and shooter.is_in_group("enemies"):
+		return
+	var health = body.get_node_or_null("Health")
+	if health:
+		health.take_damage(damage)
+
+
+func spawn_bullet_hole(hit):
+	var hole = bullet_hole_scene.instantiate()
+	get_tree().current_scene.add_child(hole)
+	hole.global_transform.origin = hit.position
+	# Align decal to surface normal
+	hole.look_at(hit.position + hit.normal, Vector3.UP)
 	
 	
 func reload():

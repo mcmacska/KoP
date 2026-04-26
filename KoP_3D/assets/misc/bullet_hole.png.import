@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ds8poeqw61rhw"
-path="res://.godot/imported/rifle_1.png-7efeff5136911f4bbe7782b5139d3333.ctex"
+uid="uid://cho1q5spg3sca"
+path="res://.godot/imported/bullet_hole.png-d7bc65fa770e4dfe2ba68be6d03bb3a7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/weapons/rifle_1.png"
-dest_files=["res://.godot/imported/rifle_1.png-7efeff5136911f4bbe7782b5139d3333.ctex"]
+source_file="res://assets/misc/bullet_hole.png"
+dest_files=["res://.godot/imported/bullet_hole.png-d7bc65fa770e4dfe2ba68be6d03bb3a7.ctex"]
 
 [params]
 

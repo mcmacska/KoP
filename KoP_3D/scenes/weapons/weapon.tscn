@@ -1,10 +1,12 @@
 [gd_scene format=3 uid="uid://c8hc4y4nw5rsk"]
 
 [ext_resource type="Script" uid="uid://x0po3mwnhjp3" path="res://scripts/weapons/weapon.gd" id="1_uxn4k"]
+[ext_resource type="PackedScene" uid="uid://1eeivr1vor4q" path="res://scenes/misc/bullet_hole.tscn" id="2_0rtie"]
 [ext_resource type="PackedScene" uid="uid://dk5ovh0gistlw" path="res://assets/weapons/m1_garand.glb" id="4_4uykt"]
 
 [node name="Weapon" type="Node3D" unique_id=70947009]
 script = ExtResource("1_uxn4k")
+bullet_hole_scene = ExtResource("2_0rtie")
 
 [node name="Muzzle" type="Marker3D" parent="." unique_id=278718160]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.064334035, -0.75936794)

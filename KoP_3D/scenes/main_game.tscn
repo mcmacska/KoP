@@ -18,9 +18,8 @@ script = ExtResource("1_ygxny")
 [node name="Player" parent="." unique_id=1976144270 instance=ExtResource("5_ipu61")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.93506753, 0)
 
-[node name="Character" parent="." unique_id=950913377 node_paths=PackedStringArray("patrol_points") instance=ExtResource("7_wi4c7")]
+[node name="Character" parent="." unique_id=950913377 instance=ExtResource("7_wi4c7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.935, 19.61)
-patrol_points = [NodePath("../PatrolPoints/Marker_1"), NodePath("../PatrolPoints/Marker_2")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1215520732]
 

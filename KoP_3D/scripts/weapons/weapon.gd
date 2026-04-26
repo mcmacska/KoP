@@ -2,8 +2,8 @@ extends BaseWeapon
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	projectile_damage = 22
-	projectile_speed = 5000  # pixels per seconds
+	accuracy = 0.005
+	damage = 22
 	fire_rate = 0.5
 	reload_speed = 2.5
 	current_ammo = 10
