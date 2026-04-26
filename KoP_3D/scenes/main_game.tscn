@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cmlywluvl53jp" path="res://scenes/death_screen.tscn" id="7_2l77h"]
 [ext_resource type="PackedScene" uid="uid://baxgt4igkjr72" path="res://scenes/pause_menu.tscn" id="7_70vka"]
 [ext_resource type="PackedScene" uid="uid://cpe87272vs1o" path="res://scenes/characters/enemy3d.tscn" id="7_wi4c7"]
+[ext_resource type="PackedScene" uid="uid://byh5mjsom0113" path="res://scenes/misc/target.tscn" id="8_70vka"]
 
 [node name="Main" type="Node3D" unique_id=617117156]
 process_mode = 3
@@ -17,8 +18,9 @@ script = ExtResource("1_ygxny")
 [node name="Player" parent="." unique_id=1976144270 instance=ExtResource("5_ipu61")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.93506753, 0)
 
-[node name="Character" parent="." unique_id=950913377 instance=ExtResource("7_wi4c7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 19.610079)
+[node name="Character" parent="." unique_id=950913377 node_paths=PackedStringArray("patrol_points") instance=ExtResource("7_wi4c7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.935, 19.61)
+patrol_points = [NodePath("../PatrolPoints/Marker_1"), NodePath("../PatrolPoints/Marker_2")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1215520732]
 
@@ -33,10 +35,10 @@ visible = false
 [node name="PatrolPoints" type="Node" parent="." unique_id=1421993215]
 
 [node name="Marker_1" type="Marker3D" parent="PatrolPoints" unique_id=1166425492]
-transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 0, 100, 0, 0)
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 0, 50, 0, 0)
 
 [node name="Marker_2" type="Marker3D" parent="PatrolPoints" unique_id=1305028305]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 453, 0, 0)
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0, -50, 0, 0)
 
-[node name="Marker_3" type="Marker3D" parent="PatrolPoints" unique_id=1355824736]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0, 368, 0, 100)
+[node name="target" parent="." unique_id=179498679 instance=ExtResource("8_70vka")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.249178, 0.0024108887, 20.763643)

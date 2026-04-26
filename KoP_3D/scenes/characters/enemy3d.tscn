@@ -3,18 +3,22 @@
 [ext_resource type="Script" uid="uid://dpry8gwgh21g2" path="res://scripts/characters/enemy_1.gd" id="1_e5b7m"]
 [ext_resource type="Script" uid="uid://duxj8fb6a54by" path="res://scripts/Health.gd" id="3_uebro"]
 [ext_resource type="PackedScene" uid="uid://c8hc4y4nw5rsk" path="res://scenes/weapons/weapon.tscn" id="4_fbq1q"]
-[ext_resource type="PackedScene" uid="uid://cbg648doefa05" path="res://assets/characters/enemy.glb" id="5_b3jn0"]
+[ext_resource type="PackedScene" uid="uid://c43npjb5uauki" path="res://scenes/characters/enemy_mesh.tscn" id="5_oji3h"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n06jw"]
+radius = 0.25585938
+height = 1.8049316
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_n06jw"]
 radius = 7.965646
 
-[node name="Character" type="CharacterBody3D" unique_id=950913377 groups=["enemies"]]
+[node name="Character" type="CharacterBody3D" unique_id=1336977627 groups=["enemies"]]
 collision_layer = 2
+collision_mask = 7
 script = ExtResource("1_e5b7m")
 
 [node name="Hitbox" type="CollisionShape3D" parent="." unique_id=409270568]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.013061523, 0)
 shape = SubResource("CapsuleShape3D_n06jw")
 
 [node name="Health" type="Node" parent="." unique_id=627811805]
@@ -23,13 +27,13 @@ script = ExtResource("3_uebro")
 [node name="Weapon" parent="." unique_id=70947009 instance=ExtResource("4_fbq1q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27998573, 0.23137525, 0)
 
-[node name="Body" parent="." unique_id=1278972138 instance=ExtResource("5_b3jn0")]
+[node name="Body" parent="." unique_id=1812369 instance=ExtResource("5_oji3h")]
+
+[node name="Area2D" type="Area3D" parent="." unique_id=1823080115 groups=["enemies"]]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 
-[node name="Area2D" type="Area3D" parent="Body" unique_id=1823080115 groups=["enemies"]]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/Area2D" unique_id=2121553163]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area2D" unique_id=2121553163]
 shape = SubResource("SphereShape3D_n06jw")
 
-[connection signal="body_entered" from="Body/Area2D" to="." method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="Body/Area2D" to="." method="_on_area_3d_body_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_3d_body_exited"]

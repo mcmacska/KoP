@@ -1,0 +1,10 @@
+res://scenes/main_game.tscn
+res://scripts/base.gd
+res://scenes/characters/enemy_1.tscn
+res://scripts/characters/enemy_1.gd
+res://scripts/weapons/weapon.gd
+res://scenes/characters/player.tscn
+res://scripts/main_game.gd
+res://scripts/weapons/base_weapon.gd
+res://scripts/ui.gd
+res://scenes/weapons/weapon.tscn

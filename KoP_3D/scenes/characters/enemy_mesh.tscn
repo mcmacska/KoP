@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://c43npjb5uauki"]
+
+[ext_resource type="PackedScene" uid="uid://cbg648doefa05" path="res://assets/characters/enemy.glb" id="1_i22y6"]
+
+[node name="enemy" unique_id=1812369 instance=ExtResource("1_i22y6")]

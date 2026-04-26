@@ -4,8 +4,8 @@
 
 [node name="player" unique_id=1321829767 instance=ExtResource("1_uasrd")]
 
-[node name="Cylinder" parent="." index="0" unique_id=1918155317]
-layers = 0
+[node name="Cylinder" parent="." index="0" unique_id=545042699]
+layers = 8
 
-[node name="Cube" parent="." index="1" unique_id=2146604589]
-layers = 0
+[node name="Cube" parent="." index="1" unique_id=408806382]
+layers = 8

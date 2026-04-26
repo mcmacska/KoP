@@ -6,14 +6,14 @@ var direction := Vector2.LEFT
 var distance_moved = 0
 const max_distance = 100
 
-const speed = 160.0
+const speed = 16.0
 var targets: Array = []
 #var current_target: Node2D = null
 
 @onready var health = $Health
 @onready var weapon = $Weapon
 @onready var body_mesh = $Body
-var dead_sprite = preload("res://assets/characters/dead_character.png")
+var dead_scene = preload("res://scenes/characters/enemy_dead.tscn")
 
 enum State {
 	PATROL,
@@ -35,12 +35,15 @@ signal died()
 
 
 func _on_died():
-	body_mesh.texture = dead_sprite
 	is_dead = true
 	died.emit()
-	set_process(false)
-	set_physics_process(false)
-	
+	var body = dead_scene.instantiate()
+	body.global_transform = global_transform
+	#body.linear_velocity = velocity
+	get_parent().add_child(body)
+	queue_free()
+
+
 func _ready():
 	# overwrite initial health
 	health.max_health = 100
@@ -54,13 +57,19 @@ func _ready():
 	
 	
 func _process(delta):
-	if get_tree().paused:
+	if is_dead || get_tree().paused:
 		return
 		
 		
 func _physics_process(delta: float) -> void:
+	if is_dead:
+		return
+	# Add the gravity
+	if not is_on_floor():
+		velocity.y += get_gravity().y * delta
+	elif velocity.y < 0:
+			velocity.y = 0
 	update_state()
-
 	match current_state:
 		State.PATROL:
 			patrol(delta)
@@ -70,6 +79,7 @@ func _physics_process(delta: float) -> void:
 			attack(delta)
 		State.CAPTURE:
 			capture(delta)
+	move_and_slide()
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
@@ -145,7 +155,6 @@ func patrol(delta):
 		return
 
 	velocity = dir.normalized() * speed
-	move_and_slide()
 	
 	
 func get_closest_base() -> Node3D:
@@ -184,7 +193,6 @@ func capture(delta):
 		velocity = Vector3.ZERO
 	else:
 		velocity = dir.normalized() * speed
-		move_and_slide()
 		
 
 func chase(delta):
@@ -196,7 +204,6 @@ func chase(delta):
 	if dir.length_squared() < 0.000001:
 		return # prevent invalid basis
 	velocity = dir.normalized() * speed
-	move_and_slide()
 
 
 func update_state():

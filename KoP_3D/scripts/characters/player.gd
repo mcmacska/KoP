@@ -20,7 +20,7 @@ signal died()
 var inventory: Array = []
 var current_weapon_index := 0
 var current_weapon: Node = null
-@onready var weapon_holder = $WeaponHolder
+@onready var weapon_holder = $CameraPivot/WeaponHolder
 signal ammo_changed(current, max)
 
 
@@ -45,7 +45,7 @@ func _ready():
 
 
 func _input(event):
-	if get_tree().paused:
+	if is_dead || get_tree().paused:
 		return
 	if event is InputEventMouseMotion:
 		manage_direction(event)

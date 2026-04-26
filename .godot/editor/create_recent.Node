@@ -1,0 +1,15 @@
+Node
+Marker2D
+Label
+Sprite2D
+CollisionShape2D
+Area2D
+VBoxContainer
+RigidBody2D
+Node2D
+CanvasLayer
+Button
+ColorRect
+CollisionPolygon2D
+StaticBody2D
+Camera2D

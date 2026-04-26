@@ -4,7 +4,7 @@ extends BaseWeapon
 func _ready() -> void:
 	projectile_damage = 22
 	projectile_speed = 5000  # pixels per seconds
-	fire_rate = 0.8
+	fire_rate = 0.5
 	reload_speed = 2.5
 	current_ammo = 10
 	clip_max_ammo = 10

@@ -47,6 +47,7 @@ func toggle_pause():
 
 
 func player_died():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	death_screen.visible = true
 
 

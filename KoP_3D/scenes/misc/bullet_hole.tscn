@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://1eeivr1vor4q"]
+
+[node name="BulletHole" type="Node3D" unique_id=971721443]
+
+[node name="Decal" type="Decal" parent="." unique_id=1473691104]

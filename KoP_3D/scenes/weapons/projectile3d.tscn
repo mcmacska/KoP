@@ -7,7 +7,7 @@
 size = Vector3(0.011642456, 0.00957489, 0.09992981)
 
 [node name="Projectile" type="RigidBody3D" unique_id=143100727]
-collision_layer = 0
+collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_glkv1")
 
