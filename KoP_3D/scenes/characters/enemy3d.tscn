@@ -10,7 +10,7 @@ radius = 0.25585938
 height = 1.8049316
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_n06jw"]
-radius = 7.965646
+radius = 19.940147
 
 [node name="Character" type="CharacterBody3D" unique_id=1336977627 groups=["enemies"]]
 collision_layer = 2
@@ -33,9 +33,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 [node name="Body" parent="." unique_id=1812369 instance=ExtResource("5_oji3h")]
 
 [node name="Area2D" type="Area3D" parent="." unique_id=1823080115 groups=["enemies"]]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, -30.644127)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area2D" unique_id=2121553163]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.531502, 0, -5.0405794e-07)
 shape = SubResource("SphereShape3D_n06jw")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_3d_body_entered"]

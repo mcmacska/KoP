@@ -3,16 +3,34 @@
 [ext_resource type="Script" uid="uid://x0po3mwnhjp3" path="res://scripts/weapons/weapon.gd" id="1_uxn4k"]
 [ext_resource type="PackedScene" uid="uid://1eeivr1vor4q" path="res://scenes/misc/bullet_hole.tscn" id="2_0rtie"]
 [ext_resource type="PackedScene" uid="uid://dk5ovh0gistlw" path="res://assets/weapons/m1_garand.glb" id="4_4uykt"]
+[ext_resource type="PackedScene" uid="uid://c7x4gkses0oq4" path="res://assets/weapons/muzzle.glb" id="4_b37ah"]
+[ext_resource type="AudioStream" uid="uid://mpt1joh3um3u" path="res://assets/weapons/gunshot_rifle.mp3" id="5_b37ah"]
+[ext_resource type="AudioStream" uid="uid://cgcrv7mgqikr5" path="res://assets/weapons/reload_rifle.mp3" id="6_anm00"]
 
 [node name="Weapon" type="Node3D" unique_id=70947009]
 script = ExtResource("1_uxn4k")
 bullet_hole_scene = ExtResource("2_0rtie")
 
-[node name="Muzzle" type="Marker3D" parent="." unique_id=278718160]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.064334035, -0.75936794)
+[node name="m1_garand" parent="." unique_id=830846358 instance=ExtResource("4_4uykt")]
 
-[node name="MuzzleFlash" type="Sprite3D" parent="." unique_id=206556310]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0, 0, 0.064, -0.76)
+[node name="Muzzle" type="Node3D" parent="." unique_id=1641798917]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.064, -0.759)
+
+[node name="MuzzleFlash" parent="Muzzle" unique_id=47607579 instance=ExtResource("4_b37ah")]
 visible = false
 
-[node name="m1_garand" parent="." unique_id=830846358 instance=ExtResource("4_4uykt")]
+[node name="Flash" type="OmniLight3D" parent="Muzzle" unique_id=1804706399]
+visible = false
+light_color = Color(0.96875, 0.6322056, 0.27624512, 1)
+light_energy = 0.2
+omni_range = 0.9799919
+
+[node name="GunshotSound" type="AudioStreamPlayer3D" parent="." unique_id=817747110]
+stream = ExtResource("5_b37ah")
+max_distance = 20.0
+max_polyphony = 2
+
+[node name="ReloadSound" type="AudioStreamPlayer3D" parent="." unique_id=1681175736]
+stream = ExtResource("6_anm00")
+max_distance = 20.0
+max_polyphony = 2

@@ -1,22 +1,6 @@
 [gd_scene format=3 uid="uid://c2n03uvvtks4k"]
 
 [ext_resource type="Script" uid="uid://c74qm6i6dg028" path="res://scripts/weapons/pistol.gd" id="1_60a84"]
-[ext_resource type="Texture2D" uid="uid://dmsx141c0bngt" path="res://assets/weapons/pistol.png" id="2_60a84"]
-[ext_resource type="Texture2D" uid="uid://bydokea8rkg1r" path="res://assets/weapons/muzzle_flash.png" id="3_t1ie7"]
 
 [node name="Weapon" type="Node3D" unique_id=689063791]
 script = ExtResource("1_60a84")
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=99978899]
-position = Vector2(14, 0)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_60a84")
-
-[node name="Muzzle" type="Marker2D" parent="." unique_id=1473545143]
-position = Vector2(39, -8)
-
-[node name="MuzzleFlash" type="Sprite2D" parent="." unique_id=918272839]
-visible = false
-position = Vector2(47, -7)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("3_t1ie7")

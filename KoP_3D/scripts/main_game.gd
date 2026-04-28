@@ -69,6 +69,7 @@ func check_win_condition():
 
 
 func end_game(winning_team):
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	if winning_team == "friends":
 		get_tree().change_scene_to_file("res://scenes/victory_screen.tscn")
 	if winning_team == "enemies":

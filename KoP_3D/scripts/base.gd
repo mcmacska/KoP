@@ -1,4 +1,4 @@
-extends Node2D
+extends Node3D
 
 @export var max_capture_points: int = 100
 @export var capture_speed: float = 5.0 # points per second
@@ -73,7 +73,7 @@ func change_team(ally_team_name: String, enemy_team_name: String):
 	enemy_group = enemy_team_name
 	
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
+func _on_area_3d_body_entered(body: Node3D) -> void:
 	print("body entered: ", body.get_groups())
 	
 	if body.is_in_group(enemy_group):
@@ -90,7 +90,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		return
 
 
-func _on_area_2d_body_exited(body: Node2D) -> void:
+func _on_area_3d_body_exited(body: Node3D) -> void:
 	if body.is_in_group(enemy_group):
 		enemy_counter -= 1
 		return
@@ -99,7 +99,7 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 		return
 
 
-func _on_body_died(body: Node2D) -> void:
+func _on_body_died(body: Node3D) -> void:
 	if body.is_in_group(enemy_group):
 		enemy_counter -= 1
 		return

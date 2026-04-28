@@ -190,8 +190,7 @@ func capture(delta):
 	# rotate like before
 	rotate_towards(dir, delta)
 
-	if global_position.distance_to(base.global_position) < 20:
-		print("Im in position")
+	if global_position.distance_to(base.global_position) < 10:
 		velocity = Vector3.ZERO
 	else:
 		velocity = dir.normalized() * speed

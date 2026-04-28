@@ -17,8 +17,12 @@ var projectile_scene = preload("res://scenes/weapons/projectile3d.tscn")
 @export var clip_max_ammo: int = 10
 @export var full_ammo: int = 100
 
-@onready var muzzle_flash = $MuzzleFlash
-const muzzle_flash_time: float = 0.1
+# effects
+@onready var gunshot_sound = $GunshotSound
+@onready var reload_sound = $ReloadSound
+@onready var muzzle_flash = $Muzzle/MuzzleFlash
+@onready var flash = $Muzzle/Flash
+const muzzle_flash_time: float = 0.05
 
 signal ammo_changed(current_ammo, full_ammo)
 
@@ -104,6 +108,7 @@ func reload():
 	is_reloading = true
 	can_shoot = false
 	print("reloading...")
+	reload_sound.play()
 	# cooldown
 	await get_tree().create_timer(reload_speed).timeout
 	if not is_reloading:
@@ -122,6 +127,12 @@ func cancel_reload():
 
 
 func shooting_effects():
+	gunshot_sound.pitch_scale = randf_range(0.95, 1.05)
+	gunshot_sound.play()
+	# Random rotation in radians
+	muzzle_flash.rotation.z = randf_range(0.0, TAU)
+	flash.visible = true
 	muzzle_flash.visible = true
 	await get_tree().create_timer(muzzle_flash_time).timeout
 	muzzle_flash.visible = false
+	flash.visible = false
