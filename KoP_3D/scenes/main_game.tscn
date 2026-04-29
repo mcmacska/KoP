@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://dt0riegffo8fp"]
 
 [ext_resource type="Script" uid="uid://di1h8656itdcf" path="res://scripts/main_game.gd" id="1_ygxny"]
-[ext_resource type="PackedScene" uid="uid://dmh0xdhi3qwgo" path="res://scenes/characters/player3d.tscn" id="5_ipu61"]
+[ext_resource type="PackedScene" uid="uid://dmh0xdhi3qwgo" path="res://scenes/characters/player.tscn" id="5_ipu61"]
 [ext_resource type="PackedScene" uid="uid://bc3d6w0jbe7wm" path="res://scenes/ui.tscn" id="5_nqdth"]
 [ext_resource type="PackedScene" uid="uid://c22jaf6nmn3e5" path="res://scenes/structures/Ground.tscn" id="6_ygxny"]
 [ext_resource type="PackedScene" uid="uid://cmlywluvl53jp" path="res://scenes/death_screen.tscn" id="7_2l77h"]
 [ext_resource type="PackedScene" uid="uid://baxgt4igkjr72" path="res://scenes/pause_menu.tscn" id="7_70vka"]
-[ext_resource type="PackedScene" uid="uid://cpe87272vs1o" path="res://scenes/characters/enemy3d.tscn" id="7_wi4c7"]
+[ext_resource type="PackedScene" uid="uid://5ve152f600tj" path="res://scenes/characters/enemy_1.tscn" id="7_wi4c7"]
 [ext_resource type="PackedScene" uid="uid://byh5mjsom0113" path="res://scenes/misc/target.tscn" id="8_70vka"]
 [ext_resource type="PackedScene" uid="uid://yak5xtimvwh8" path="res://scenes/areas/base.tscn" id="9_2l77h"]
 
@@ -19,7 +19,7 @@ script = ExtResource("1_ygxny")
 [node name="Player" parent="." unique_id=1976144270 instance=ExtResource("5_ipu61")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.93506753, 0)
 
-[node name="Character" parent="." unique_id=950913377 instance=ExtResource("7_wi4c7")]
+[node name="Character" parent="." unique_id=1336977627 instance=ExtResource("7_wi4c7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.935, 19.61)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1215520732]

@@ -27,7 +27,7 @@ omni_range = 0.9799919
 
 [node name="GunshotSound" type="AudioStreamPlayer3D" parent="." unique_id=817747110]
 stream = ExtResource("5_b37ah")
-max_distance = 20.0
+max_distance = 96.0
 max_polyphony = 2
 
 [node name="ReloadSound" type="AudioStreamPlayer3D" parent="." unique_id=1681175736]

@@ -18,8 +18,9 @@ var is_dead = false
 signal died()
 
 # weapon management
-var inventory: Array = []
+var inventory: Array = [null, null, null, null]
 var current_weapon_index := 0
+var last_weapon_index := 0
 var current_weapon: Node = null
 @onready var weapon_holder = $CameraPivot/WeaponHolder
 signal ammo_changed(current, max)
@@ -38,10 +39,8 @@ func _ready():
 	health.died.connect(_on_died)
 	
 	# add starter weapons
-	print("segg")
 	add_weapon(preload("res://scenes/weapons/weapon.tscn"))
-	add_weapon(preload("res://scenes/weapons/pistol.tscn"))
-	print("amog")
+	add_weapon(preload("res://scenes/weapons/smg62.tscn"))
 	equip_weapon(0)
 
 
@@ -61,8 +60,17 @@ func _input(event):
 func _process(delta):
 	if get_tree().paused:
 		return
+	# handle shooting
+	if Input.is_action_pressed("shoot"):
+		current_weapon.trigger_held(camera.global_transform)
 	if Input.is_action_just_pressed("shoot"):
-		current_weapon.shoot(camera.global_transform)
+		current_weapon.trigger_pressed(camera.global_transform)
+	if Input.is_action_just_released("shoot"):
+		current_weapon.trigger_released(camera.global_transform)
+	# switch last item in inventory
+	#if Input.is_action_just_released("last_slot") && last_weapon_index != current_weapon_index:
+		#equip_weapon(last_weapon_index)
+	# 
 	if Input.is_action_just_pressed("reload"):
 		current_weapon.reload()
 	if Input.is_action_just_pressed("run"):
@@ -116,9 +124,11 @@ func apply_speed_changer(multiplier: float):
 func add_weapon(weapon_scene: PackedScene):
 	print("add_weapon")
 	var weapon = weapon_scene.instantiate()
-	print("add_weapon 2")
-	inventory.append(weapon)
-	print("add_weapon 3")
+	var slot = weapon.weapon_slot
+	print("slot: ", slot)
+	if inventory[slot] != null:
+		inventory[slot].queue_free()
+	inventory[slot] = weapon
 	weapon.hide()  # don't show yet
 	weapon_holder.add_child(weapon)
 	# Connect weapon ammo change
@@ -126,17 +136,23 @@ func add_weapon(weapon_scene: PackedScene):
 
 
 func equip_weapon(index: int):
-	print("Equiping weapon ", index)
+	print("current_weapon_index: ", current_weapon_index)
+	print("last_weapon_index: ", last_weapon_index)
+	var new_weapon = inventory[index]
+	if !new_weapon:
+		return
+
 	if current_weapon:
 		current_weapon.cancel_reload()
 		current_weapon.hide()
 	# Spawn new weapon
-	current_weapon = inventory[index]
-	current_weapon.show()
+	current_weapon = new_weapon
+	last_weapon_index = current_weapon_index # save last index
 	current_weapon_index = index
+	current_weapon.show()
 	# set wielder
 	current_weapon.wielder = self
-	 ## Sync
+	# Sync
 	_on_weapon_ammo_changed(
 		current_weapon.current_ammo,
 		current_weapon.full_ammo

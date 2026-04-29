@@ -2,6 +2,9 @@ extends Node3D
 
 class_name BaseWeapon
 
+# weapon type
+@export var weapon_slot: int = 0
+
 # bullet stats
 @export var damage: int = 22
 @export var bullet_hole_scene: PackedScene
@@ -39,6 +42,16 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	pass
+
+# each weapon implements the functions
+func trigger_pressed(camera_transform: Transform3D):
+	pass
+
+func trigger_held(camera_transform: Transform3D):
+	pass
+
+func trigger_released(camera_transform: Transform3D):
 	pass
 
 

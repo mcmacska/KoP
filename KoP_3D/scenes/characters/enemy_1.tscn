@@ -1,34 +1,43 @@
-[gd_scene format=3 uid="uid://d3h6663cb8e3f"]
+[gd_scene format=3 uid="uid://5ve152f600tj"]
 
-[ext_resource type="Script" uid="uid://dpry8gwgh21g2" path="res://scripts/characters/enemy_1.gd" id="1_2ol6t"]
-[ext_resource type="Texture2D" uid="uid://4vhggi63bojp" path="res://assets/characters/enemy.png" id="2_4y65w"]
-[ext_resource type="Script" uid="uid://duxj8fb6a54by" path="res://scripts/Health.gd" id="3_0o106"]
-[ext_resource type="PackedScene" uid="uid://c8hc4y4nw5rsk" path="res://scenes/weapons/weapon.tscn" id="4_4y65w"]
+[ext_resource type="Script" uid="uid://dpry8gwgh21g2" path="res://scripts/characters/enemy_1.gd" id="1_e5b7m"]
+[ext_resource type="Script" uid="uid://duxj8fb6a54by" path="res://scripts/Health.gd" id="3_uebro"]
+[ext_resource type="PackedScene" uid="uid://c8hc4y4nw5rsk" path="res://scenes/weapons/weapon.tscn" id="4_fbq1q"]
+[ext_resource type="PackedScene" uid="uid://c43npjb5uauki" path="res://scenes/characters/enemy_mesh.tscn" id="5_oji3h"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_u8vuu"]
-radius = 26.172504
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n06jw"]
+radius = 0.25585938
+height = 1.8049316
 
-[node name="Character" type="CharacterBody2D" unique_id=64473195 groups=["enemies"]]
+[sub_resource type="SphereShape3D" id="SphereShape3D_n06jw"]
+radius = 19.940147
+
+[node name="Character" type="CharacterBody3D" unique_id=1336977627 groups=["enemies"]]
 collision_layer = 2
-script = ExtResource("1_2ol6t")
+collision_mask = 7
+script = ExtResource("1_e5b7m")
 
-[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1909948124]
-shape = SubResource("CircleShape2D_u8vuu")
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1014656660]
-texture_filter = 1
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_4y65w")
-
-[node name="Area2D" type="Area2D" parent="Sprite2D" unique_id=443866151]
-
-[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Sprite2D/Area2D" unique_id=323941788]
-polygon = PackedVector2Array(24.999998, 1884.9999, 1979.9998, 2649.9998, 3209.9998, -4.9999995, 1909.9999, -2244.9998, 9.999999, -1479.9999)
+[node name="Hitbox" type="CollisionShape3D" parent="." unique_id=409270568]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.013061523, 0)
+shape = SubResource("CapsuleShape3D_n06jw")
 
 [node name="Health" type="Node" parent="." unique_id=627811805]
-script = ExtResource("3_0o106")
+script = ExtResource("3_uebro")
 
-[node name="Weapon" parent="." unique_id=823180873 instance=ExtResource("4_4y65w")]
+[node name="Weapon" parent="." unique_id=70947009 instance=ExtResource("4_fbq1q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27998573, 0.23137525, 0)
 
-[connection signal="body_entered" from="Sprite2D/Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Sprite2D/Area2D" to="." method="_on_area_2d_body_exited"]
+[node name="Muzzle" type="Node3D" parent="." unique_id=2073667034]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Body" parent="." unique_id=1812369 instance=ExtResource("5_oji3h")]
+
+[node name="Area2D" type="Area3D" parent="." unique_id=1823080115 groups=["enemies"]]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, -30.644127)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area2D" unique_id=2121553163]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.531502, 0, -5.0405794e-07)
+shape = SubResource("SphereShape3D_n06jw")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_3d_body_exited"]

@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://egvjitohxd8h"]
+
+[ext_resource type="Script" uid="uid://ddifvcs23p3rd" path="res://scripts/weapons/smg62.gd" id="1_v6tur"]
+[ext_resource type="PackedScene" uid="uid://1eeivr1vor4q" path="res://scenes/misc/bullet_hole.tscn" id="2_y0nh7"]
+[ext_resource type="PackedScene" uid="uid://c7x4gkses0oq4" path="res://assets/weapons/muzzle.glb" id="4_4xffn"]
+[ext_resource type="AudioStream" uid="uid://duhmw6epouk8a" path="res://assets/weapons/gunshot_smg.mp3" id="5_ads01"]
+[ext_resource type="AudioStream" uid="uid://cgcrv7mgqikr5" path="res://assets/weapons/reload_rifle.mp3" id="6_b3ntx"]
+[ext_resource type="PackedScene" uid="uid://dnh4hl1dstxwr" path="res://assets/weapons/smg62.glb" id="7_y0nh7"]
+
+[node name="Weapon" type="Node3D" unique_id=70947009]
+script = ExtResource("1_v6tur")
+bullet_hole_scene = ExtResource("2_y0nh7")
+
+[node name="smg62" parent="." unique_id=1931089639 instance=ExtResource("7_y0nh7")]
+
+[node name="Muzzle" type="Node3D" parent="." unique_id=1641798917]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.049170785, -0.40594187)
+
+[node name="MuzzleFlash" parent="Muzzle" unique_id=47607579 instance=ExtResource("4_4xffn")]
+visible = false
+
+[node name="Flash" type="OmniLight3D" parent="Muzzle" unique_id=1804706399]
+visible = false
+light_color = Color(0.96875, 0.6322056, 0.27624512, 1)
+light_energy = 0.2
+omni_range = 0.9799919
+
+[node name="GunshotSound" type="AudioStreamPlayer3D" parent="." unique_id=817747110]
+stream = ExtResource("5_ads01")
+max_distance = 64.0
+max_polyphony = 3
+
+[node name="ReloadSound" type="AudioStreamPlayer3D" parent="." unique_id=1681175736]
+stream = ExtResource("6_b3ntx")
+max_distance = 20.0
+max_polyphony = 2
