@@ -72,14 +72,14 @@ func _physics_process(delta: float) -> void:
 			velocity.y = 0
 	update_state()
 	match current_state:
-		State.PATROL:
-			patrol(delta)
 		State.CHASE:
 			chase(delta)
 		State.ATTACK:
 			attack(delta)
 		State.CAPTURE:
 			capture(delta)
+		State.PATROL:
+			patrol(delta)
 	move_and_slide()
 
 
@@ -190,7 +190,7 @@ func capture(delta):
 	# rotate like before
 	rotate_towards(dir, delta)
 
-	if global_position.distance_to(base.global_position) < 10:
+	if global_position.distance_to(base.global_position) < 8:
 		velocity = Vector3.ZERO
 	else:
 		velocity = dir.normalized() * speed

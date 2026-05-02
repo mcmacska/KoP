@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://bjkrorlhs8svp"]
+
+[ext_resource type="Script" uid="uid://bo7341t2hlpt1" path="res://scripts/misc/capture_bar.gd" id="1_lnuo3"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_8yhdq"]
+
+[node name="s" type="Sprite3D" unique_id=1112529495]
+billboard = 1
+texture = SubResource("ViewportTexture_8yhdq")
+script = ExtResource("1_lnuo3")
+
+[node name="Name" type="Label3D" parent="." unique_id=1965262907]
+billboard = 1
+render_priority = 2
+text = "A"
+font_size = 56
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1996282430]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -324.0
+offset_right = -512.0
+offset_bottom = -260.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+fill_mode = 3
+show_percentage = false

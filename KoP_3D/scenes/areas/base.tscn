@@ -1,9 +1,14 @@
 [gd_scene format=3 uid="uid://yak5xtimvwh8"]
 
 [ext_resource type="Script" uid="uid://dpg2e6oluc8um" path="res://scripts/base.gd" id="1_1m61d"]
+[ext_resource type="PackedScene" uid="uid://dvqlw4w5otrdt" path="res://assets/misc/base_border.glb" id="2_73g0u"]
+[ext_resource type="PackedScene" uid="uid://cwjhcrqjby1to" path="res://scenes/misc/capture_bar.tscn" id="6_mn5k3"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_73g0u"]
-radius = 31.772919
+radius = 15.775398
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_cm3lt"]
+viewport_path = NodePath("SubViewport")
 
 [node name="Base" type="Node3D" unique_id=61812128 groups=["capture_points"]]
 script = ExtResource("1_1m61d")
@@ -15,20 +20,12 @@ collision_mask = 3
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1897918650]
 shape = SubResource("SphereShape3D_73g0u")
 
-[node name="CaptureLabel" type="Label" parent="." unique_id=1910474836]
-offset_left = -20.0
-offset_top = -300.0
-offset_right = 20.0
-offset_bottom = -277.0
-text = "100"
-horizontal_alignment = 1
+[node name="base_border" parent="." unique_id=874989593 instance=ExtResource("2_73g0u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 
-[node name="BaseOwner" type="Label" parent="." unique_id=840565015]
-offset_left = -33.0
-offset_top = -330.0
-offset_right = 33.0
-offset_bottom = -307.0
-horizontal_alignment = 1
+[node name="Bar" parent="." unique_id=1112529495 instance=ExtResource("6_mn5k3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+texture = SubResource("ViewportTexture_cm3lt")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://pa8i5uf4xw34" path="res://scripts/characters/player.gd" id="1_vsclp"]
 [ext_resource type="Script" uid="uid://duxj8fb6a54by" path="res://scripts/Health.gd" id="3_ifusu"]
 [ext_resource type="Script" uid="uid://bx2c1htcswki1" path="res://scenes/characters/camera.gd" id="4_bs8hp"]
-[ext_resource type="PackedScene" uid="uid://lb622yjiln5v" path="res://scenes/player_mesh.tscn" id="4_ifusu"]
+[ext_resource type="PackedScene" uid="uid://lb622yjiln5v" path="res://scenes/characters/player_mesh.tscn" id="4_ifusu"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vsclp"]
 radius = 0.25341797
