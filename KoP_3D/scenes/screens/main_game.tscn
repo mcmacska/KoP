@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://di1h8656itdcf" path="res://scripts/main_game.gd" id="1_ntyfd"]
 [ext_resource type="Texture2D" uid="uid://cfgxdv2w3l564" path="res://assets/background/sky_1.exr" id="2_u3okq"]
-[ext_resource type="PackedScene" uid="uid://c22jaf6nmn3e5" path="res://scenes/structures/ground.tscn" id="3_pmtpm"]
+[ext_resource type="PackedScene" uid="uid://18sfoyps2i4b" path="res://scenes/structures/trench.tscn" id="3_ntyfd"]
 [ext_resource type="PackedScene" uid="uid://dmh0xdhi3qwgo" path="res://scenes/characters/player.tscn" id="4_q7ch5"]
 [ext_resource type="PackedScene" uid="uid://5ve152f600tj" path="res://scenes/characters/enemy_1.tscn" id="5_cs2f8"]
 [ext_resource type="PackedScene" uid="uid://bc3d6w0jbe7wm" path="res://scenes/ui/ui.tscn" id="6_0fkex"]
@@ -30,13 +30,32 @@ script = ExtResource("1_ntyfd")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=923018676]
 environment = SubResource("Environment_wjob3")
 
-[node name="Ground" parent="." unique_id=1418688407 instance=ExtResource("3_pmtpm")]
+[node name="Trench" parent="." unique_id=1418688407 instance=ExtResource("3_ntyfd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.3124695)
 
 [node name="Player" parent="." unique_id=1976144270 instance=ExtResource("4_q7ch5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.93506753, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.264542, 0.93506753, 77.17048)
 
 [node name="Character" parent="." unique_id=1336977627 instance=ExtResource("5_cs2f8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.935, 19.61)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.429039, 0.0596748, -114.161514)
+
+[node name="Character2" parent="." unique_id=716883363 instance=ExtResource("5_cs2f8")]
+transform = Transform3D(-0.22071451, 0, -0.97533846, 0, 1, 0, 0.97533846, 0, -0.22071451, 10.517457, 0.19963413, -109.11215)
+
+[node name="Character3" parent="." unique_id=1960994930 instance=ExtResource("5_cs2f8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.737263, 0.0596748, -113.40008)
+
+[node name="Character4" parent="." unique_id=887557751 instance=ExtResource("5_cs2f8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.585619, 0.0596748, -113.55451)
+
+[node name="Character5" parent="." unique_id=1402395714 instance=ExtResource("5_cs2f8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.402618, 0.0596748, -113.329796)
+
+[node name="Character6" parent="." unique_id=1957737174 instance=ExtResource("5_cs2f8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.476288, 0.0596748, -113.426155)
+
+[node name="Character7" parent="." unique_id=1695170621 instance=ExtResource("5_cs2f8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.688211, 0.0596748, -113.426155)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1215520732]
 
@@ -60,4 +79,4 @@ transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0, -50, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.249178, 0.0024108887, 20.763643)
 
 [node name="Base" parent="." unique_id=61812128 instance=ExtResource("10_t0fsf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.181103, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.700047, -7.6293945e-06, 84.57022)

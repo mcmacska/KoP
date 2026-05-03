@@ -6,7 +6,7 @@ var direction := Vector2.LEFT
 var distance_moved = 0
 const max_distance = 100
 
-const speed = 16.0
+const speed = 10.0
 var targets: Array = []
 #var current_target: Node2D = null
 

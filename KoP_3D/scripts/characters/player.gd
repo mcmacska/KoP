@@ -6,7 +6,7 @@ extends CharacterBody3D
 var pitch: float = 0.0
 
 var is_running: bool = false
-const BASE_SPEED: float = 16.0
+const BASE_SPEED: float = 10.0
 @export var speed_changer: float = 1.0
 var internal_speed_changer: float = 1.0
 const JUMP_VELOCITY: float = 4.5
