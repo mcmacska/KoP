@@ -1,37 +1,21 @@
 [gd_scene format=3 uid="uid://bjh47ybv82sbb"]
 
-[ext_resource type="PackedScene" uid="uid://2pgvp6veov2b" path="res://scenes/structures/wooden_plank.tscn" id="1_aqrvx"]
 [ext_resource type="Script" uid="uid://tim4834y6gxj" path="res://scripts/barbed_wire.gd" id="1_h2vd3"]
-[ext_resource type="Texture2D" uid="uid://drxak3tlr1tk8" path="res://assets/structures/barbed_wire.png" id="2_wf0au"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_aqrvx"]
-size = Vector2(158, 26)
-
-[node name="BarbedWire" type="Node2D" unique_id=121436032]
+[node name="BarbedWire" type="Node3D" unique_id=1705928998]
 script = ExtResource("1_h2vd3")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=243808748]
+[node name="Area2D" type="Area3D" parent="." unique_id=652013216]
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1042151346]
-shape = SubResource("RectangleShape2D_aqrvx")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area2D" unique_id=369227394]
 
-[node name="Sprite2D" type="Sprite2D" parent="Area2D" unique_id=614483259]
-position = Vector2(0, -8)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_wf0au")
+[node name="Sprite2D" type="Sprite3D" parent="Area2D" unique_id=366490887]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0, 0, -8, 0)
 
-[node name="Sprite2D2" type="Sprite2D" parent="Area2D" unique_id=1279712068]
-position = Vector2(0, 8)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_wf0au")
-
-[node name="WoodenPlank" parent="." unique_id=1561139140 instance=ExtResource("1_aqrvx")]
-position = Vector2(83, 0)
-
-[node name="WoodenPlank2" parent="." unique_id=2138531238 instance=ExtResource("1_aqrvx")]
-position = Vector2(-83, 0)
+[node name="Sprite2D2" type="Sprite3D" parent="Area2D" unique_id=2126033459]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0, 0, 8, 0)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

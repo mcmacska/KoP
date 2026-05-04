@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://baxgt4igkjr72" path="res://scenes/screens/pause_menu.tscn" id="8_jqhwc"]
 [ext_resource type="PackedScene" uid="uid://byh5mjsom0113" path="res://scenes/misc/target.tscn" id="9_w1shy"]
 [ext_resource type="PackedScene" uid="uid://yak5xtimvwh8" path="res://scenes/areas/base.tscn" id="10_t0fsf"]
+[ext_resource type="PackedScene" uid="uid://dwg7u1v6se4w6" path="res://scenes/characters/friend_1.tscn" id="11_u3okq"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5cypo"]
 panorama = ExtResource("2_u3okq")
@@ -34,7 +35,7 @@ environment = SubResource("Environment_wjob3")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.3124695)
 
 [node name="Player" parent="." unique_id=1976144270 instance=ExtResource("4_q7ch5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.264542, 0.93506753, 77.17048)
+transform = Transform3D(0.32082793, 0, -0.9471375, 0, 1, 0, 0.9471375, 0, 0.32082793, -8.838223, 0.93506753, 59.35681)
 
 [node name="Character" parent="." unique_id=1336977627 instance=ExtResource("5_cs2f8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.429039, 0.0596748, -114.161514)
@@ -54,8 +55,59 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.402618, 0.0596748, -113.32
 [node name="Character6" parent="." unique_id=1957737174 instance=ExtResource("5_cs2f8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.476288, 0.0596748, -113.426155)
 
-[node name="Character7" parent="." unique_id=1695170621 instance=ExtResource("5_cs2f8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.688211, 0.0596748, -113.426155)
+[node name="Character7" parent="." unique_id=888940987 instance=ExtResource("5_cs2f8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.939186, 0.0596748, -113.426155)
+
+[node name="Character8" parent="." unique_id=223476246 instance=ExtResource("5_cs2f8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.87384, 0.0596748, -113.426155)
+
+[node name="Character9" parent="." unique_id=1748147490 instance=ExtResource("5_cs2f8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.295616, 0.0596748, -113.426155)
+
+[node name="Character10" parent="." unique_id=741551474 instance=ExtResource("5_cs2f8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.295616, 0.0596748, -111.550095)
+
+[node name="Character11" parent="." unique_id=1426454952 instance=ExtResource("5_cs2f8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.256954, 0.0596748, -111.550095)
+
+[node name="Character12" parent="." unique_id=2111660915 instance=ExtResource("5_cs2f8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.802696, 0.0596748, -111.550095)
+
+[node name="Character13" parent="." unique_id=67168812 instance=ExtResource("11_u3okq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4512606, 0.935, 53.582024)
+should_capture_ = false
+
+[node name="Character14" parent="." unique_id=2057405724 instance=ExtResource("11_u3okq")]
+transform = Transform3D(0.87467897, 0, -0.48470274, 0, 1, 0, 0.48470274, 0, 0.87467897, -6.2137127, 1.9955945, 49.717236)
+should_capture_ = false
+
+[node name="Character15" parent="." unique_id=1716596294 instance=ExtResource("11_u3okq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.38578, 0.935, 53.343323)
+should_capture_ = false
+
+[node name="Character16" parent="." unique_id=1774403674 instance=ExtResource("11_u3okq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7229881, 0.935, 53.343323)
+should_capture_ = false
+
+[node name="Character17" parent="." unique_id=1186895666 instance=ExtResource("11_u3okq")]
+transform = Transform3D(0.9472998, 0, 0.32034847, 0, 1, 0, -0.32034847, 0, 0.9472998, 13.571857, 0.935, 56.172493)
+should_capture_ = false
+
+[node name="Character18" parent="." unique_id=1366432706 instance=ExtResource("11_u3okq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.523462, 0.935, 53.343323)
+should_capture_ = false
+
+[node name="Character19" parent="." unique_id=370854416 instance=ExtResource("11_u3okq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.336058, 0.935, 53.343323)
+should_capture_ = false
+
+[node name="Character20" parent="." unique_id=2060834220 instance=ExtResource("11_u3okq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.23201, 0.935, 53.343323)
+should_capture_ = false
+
+[node name="Character21" parent="." unique_id=1790529718 instance=ExtResource("11_u3okq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.788425, 0.935, 55.310448)
+should_capture_ = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1215520732]
 
