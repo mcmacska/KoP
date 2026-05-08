@@ -1,6 +1,6 @@
 extends Node3D
 
-class_name BaseWeapon
+class_name BaseMeleeWeapon
 
 # weapon type
 @export var weapon_slot: int = 0
