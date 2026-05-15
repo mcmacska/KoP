@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 @onready var health_bar = $HealthBar
 @onready var current_ammo = $HBoxContainer/CurrentAmmo
